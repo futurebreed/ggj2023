@@ -57,7 +57,7 @@ public class InputDragBehavior : MonoBehaviour
                     }
                 case TouchPhase.Moved:
                     {
-                        Vector2 newVelocity = (touch.position - inputState.position) / Time.deltaTime;
+                        Vector3 newVelocity = (new Vector3(touch.position.x, touch.position.y, 0.0f) - inputState.position) / Time.deltaTime;
                         inputState.acceleration = (newVelocity - inputState.velocity) / Time.deltaTime;
                         inputState.velocity = newVelocity;
 
@@ -149,8 +149,8 @@ public class InputDragBehavior : MonoBehaviour
 
     private void updateMouseMovementState()
     {
-        Vector2 mousePosOnScreen = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        Vector2 newVelocity = (mousePosOnScreen - inputState.position) / Time.deltaTime;
+        Vector3 mousePosOnScreen = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.0f);
+        Vector3 newVelocity = (mousePosOnScreen - inputState.position) / Time.deltaTime;
         inputState.acceleration = (mousePosOnScreen - inputState.position) / Time.deltaTime;
         inputState.velocity = newVelocity;
         inputState.position = mousePosOnScreen;
@@ -188,10 +188,10 @@ public class InputDragBehavior : MonoBehaviour
 
 public class InputState
 {
-    public Vector2 position { get; set; } = Vector2.zero;
-    public Vector2 velocity { get; set; } = Vector2.zero;
+    public Vector3 position { get; set; } = Vector3.zero;
+    public Vector3 velocity { get; set; } = Vector3.zero;
     public float speed => velocity.magnitude;
-    public Vector2 acceleration { get; set; } = Vector2.zero;
+    public Vector3 acceleration { get; set; } = Vector3.zero;
     public DragState state { get; set; } = DragState.None;
 
     public bool mouseDown { get; set; } = false;
