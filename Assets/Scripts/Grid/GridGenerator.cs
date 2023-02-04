@@ -9,7 +9,7 @@ public class GridGenerator : MonoBehaviour
     // using the X and Z axis as the Y anx X coordinates for the grid system respectively
 
     // The prefab to be used for the grid
-    public GridCell cubeCellPrefab;
+    public GridCell cubeCellPrefab, sphereCellPrefab;
 
     // The size of the grid
     public int gridX = 10;
@@ -34,6 +34,7 @@ public class GridGenerator : MonoBehaviour
     // Generate the grid
     void GenerateGrid()
     {
+        int i = 0;
         // Loop through the grid width
         for (int x = 0; x < gridX; x++)
         {
@@ -43,8 +44,13 @@ public class GridGenerator : MonoBehaviour
                 // TODO: Sample the Level's tilemap to see if there is a cell at this position
                 // And if so, what type of cell it is
 
+                GridCell prefabToSpawn = i % 3 == 0 ? sphereCellPrefab : cubeCellPrefab;
+                i++; // hack
+
+                Debug.Log($"Spawning {prefabToSpawn.name} at {x}, {z}");
+
                 // Create a new grid prefab
-                GridCell newGridPrefab = Instantiate(cubeCellPrefab);
+                GridCell newGridPrefab = Instantiate(prefabToSpawn);
 
                 // In root grid, z-axis == y-axis
                 // Set the position of the new grid prefab
