@@ -24,13 +24,17 @@ public class rope : MonoBehaviour
 
     public void DrawRope(){
         Vector3[] ropePositions = new Vector3[segmentLength];
+        int i;
 
-        for(int i=0; i < segmentLength; i++){
+        for(i=0; i < segmentLength; i++){
             ropePositions[i] = ropeSegments[i].posNow;
         }
 
-        line.positionCount = ropePositions.Length;
+        line.startWidth = .65f;
+        line.endWidth = .02f;
         line.SetPositions(ropePositions);
+        line.positionCount = ropePositions.Length;
+        
     }
 
     public void Awake() {
