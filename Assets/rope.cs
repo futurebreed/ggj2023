@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class rope : MonoBehaviour
 {
+    [SerializeField]
+    private InputDragBehavior inputBehavior;
+
     private LineRenderer line;
     private List<RopeSegment> ropeSegments = new List<RopeSegment>();
     public float ropeSegLen = 0.25f;
@@ -39,7 +42,7 @@ public class rope : MonoBehaviour
 
     public void Awake() {
         line = GetComponent<LineRenderer>();
-        Vector3 ropeStartPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0,0,4f));
+        Vector3 ropeStartPoint = Camera.main.ScreenToWorldPoint(inputBehavior.inputState.position + new Vector3(0,0,4f));
 
         for(int i=0;i<segmentLength;i++){
             ropeSegments.Add(new RopeSegment(ropeStartPoint));
@@ -73,7 +76,7 @@ public class rope : MonoBehaviour
 
     public void Physics(){
         RopeSegment zero = ropeSegments[0];
-        zero.posNow = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0,0,4f));
+        zero.posNow = Camera.main.ScreenToWorldPoint(inputBehavior.inputState.position + new Vector3(0,0,4f));
         ropeSegments[0] = zero;
 
         for(int i=0;i<segmentLength-1;i++){
