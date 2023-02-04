@@ -402,7 +402,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPrefab: {fileID: 1201086949024678401, guid: d0bdae7bced180d42bb800a1ae398aa6,
     type: 3}
-  gridX: 35
-  gridY: 13
-  offsetX: -15
-  offsetY: -8
+  gridX: 32
+  gridY: 16

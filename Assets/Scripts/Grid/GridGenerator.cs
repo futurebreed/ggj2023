@@ -9,11 +9,14 @@ public class GridGenerator : MonoBehaviour
     // using the X and Z axis as the Y anx X coordinates for the grid system respectively
 
     // The prefab to be used for the grid
-    public GameObject gridPrefab;
+    public GridCell gridPrefab;
 
     // The size of the grid
     public int gridX = 10;
     public int gridY = 10;
+
+    // todo: this will be a collection of tile scriptable objects
+    private Dictionary<Vector2, bool> gridState;
 
     private Transform _cameraTransform;
 
@@ -37,12 +40,18 @@ public class GridGenerator : MonoBehaviour
             // Loop through the grid height
             for (int z = 0; z < gridY; z++)
             {
+                // TODO: Sample the Level's tilemap to see if there is a cell at this position
+                // And if so, what type of cell it is
+
                 // Create a new grid prefab
-                GameObject newGridPrefab = Instantiate(gridPrefab);
+                GridCell newGridPrefab = Instantiate(gridPrefab);
 
                 // In root grid, z-axis == y-axis
                 // Set the position of the new grid prefab
                 newGridPrefab.transform.position = new Vector3(x, 0, z);
+
+                // set it visible for now
+                gridState[new Vector2(x, z)] = true;
 
                 // Set the parent of the new grid prefab
                 newGridPrefab.transform.parent = this.transform;
