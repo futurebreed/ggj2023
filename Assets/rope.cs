@@ -35,7 +35,7 @@ public class rope : MonoBehaviour
 
     public void Awake() {
         line = GetComponent<LineRenderer>();
-        Vector3 ropeStartPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 ropeStartPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0,0,4f));
 
         for(int i=0;i<segmentLength;i++){
             ropeSegments.Add(new RopeSegment(ropeStartPoint));
@@ -69,7 +69,7 @@ public class rope : MonoBehaviour
 
     public void Physics(){
         RopeSegment zero = ropeSegments[0];
-        zero.posNow = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        zero.posNow = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0,0,4f));
         ropeSegments[0] = zero;
 
         for(int i=0;i<segmentLength-1;i++){
