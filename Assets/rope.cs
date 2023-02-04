@@ -62,7 +62,7 @@ public class rope : MonoBehaviour
             ropeSegments[i] = firstSegment;
         }
 
-        for(int i=50;i<50;i++){
+        for(int i=0;i<50;i++){
             Physics();
         }
     }
