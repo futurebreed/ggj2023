@@ -25,8 +25,7 @@ public class rope : MonoBehaviour
     public void DrawRope(){
         Vector3[] ropePositions = new Vector3[segmentLength];
 
-        int i;
-        for(i=0; i < segmentLength; i++){
+        for(int i=0; i < segmentLength; i++){
             ropePositions[i] = ropeSegments[i].posNow;
         }
 
@@ -37,15 +36,14 @@ public class rope : MonoBehaviour
     public void Awake() {
         line = GetComponent<LineRenderer>();
         Vector3 ropeStartPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        int i;
 
-        for(i=0;i<segmentLength;i++){
+        for(int i=0;i<segmentLength;i++){
             ropeSegments.Add(new RopeSegment(ropeStartPoint));
             ropeStartPoint.y -= ropeSegLen;
         }
     }
 
-    public void update(){
+    public void Update(){
         DrawRope();
     }
 
@@ -54,8 +52,8 @@ public class rope : MonoBehaviour
     }
 
     public void Simulate(){
-        int i;
-        for(i=1;i<segmentLength;i++){
+
+        for(int i=1;i<segmentLength;i++){
             RopeSegment firstSegment = ropeSegments[i];
             Vector2 velocity = firstSegment.posNow - firstSegment.posOld;
             firstSegment.posOld = firstSegment.posNow;
@@ -64,7 +62,7 @@ public class rope : MonoBehaviour
             ropeSegments[i] = firstSegment;
         }
 
-        for(i=50;i<50;i++){
+        for(int i=50;i<50;i++){
             Physics();
         }
     }
@@ -73,9 +71,8 @@ public class rope : MonoBehaviour
         RopeSegment zero = ropeSegments[0];
         zero.posNow = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ropeSegments[0] = zero;
-        int i;
 
-        for(i=0;i<segmentLength-1;i++){
+        for(int i=0;i<segmentLength-1;i++){
             RopeSegment firstSeg = ropeSegments[i];
             RopeSegment secondSeg = ropeSegments[i+1];
             float dist = (firstSeg.posNow - secondSeg.posNow).magnitude;
@@ -89,7 +86,7 @@ public class rope : MonoBehaviour
             }
 
             Vector2 changeAmount = changeDir * error;
-            if(i!=0) {
+            if(i !=0) {
                 firstSeg.posNow -= changeAmount * elasticity;
                 ropeSegments[i] = firstSeg;
                 secondSeg.posNow += changeAmount * elasticity;
