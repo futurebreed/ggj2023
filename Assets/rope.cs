@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class rope : MonoBehaviour
 {
+    [SerializeField]
+    private InputDragBehavior inputBehavior;
+
     private LineRenderer line;
     private List<RopeSegment> ropeSegments = new List<RopeSegment>();
     public float ropeSegLen = 0.25f;

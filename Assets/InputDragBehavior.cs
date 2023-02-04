@@ -13,11 +13,11 @@ public enum DragState
 
 public class InputDragBehavior : MonoBehaviour
 {
-    public InputSupport inputSupport = new InputSupport();
+    public InputState inputState = new InputState();
 
-    public float MaxMagnitudeForLightDrag = 0.25f;
-    public float MaxMagnitudeForMediumDrag = 0.50f;
-    public float MaxMagnitudeForStrongDrag = 1.00f;
+    [Range(0.0f, 1.0f)] public float MaxMagnitudeForLightDrag = 0.25f;
+    [Range(0.0f, 1.0f)] public float MaxMagnitudeForMediumDrag = 0.50f;
+    [Range(0.0f, 1.0f)] public float MaxMagnitudeForStrongDrag = 1.00f;
 
     private void Update()
     {
@@ -50,16 +50,16 @@ public class InputDragBehavior : MonoBehaviour
                 case TouchPhase.Began:
                 case TouchPhase.Stationary:
                     {
-                        inputSupport.state = DragState.Stationary;
-                        inputSupport.acceleration = Vector2.zero;
-                        inputSupport.velocity = Vector2.zero;
+                        inputState.state = DragState.Stationary;
+                        inputState.acceleration = Vector2.zero;
+                        inputState.velocity = Vector2.zero;
                         break;
                     }
                 case TouchPhase.Moved:
                     {
-                        Vector2 newVelocity = (touch.position - inputSupport.position) / Time.deltaTime;
-                        inputSupport.acceleration = (newVelocity - inputSupport.velocity) / Time.deltaTime;
-                        inputSupport.velocity = newVelocity;
+                        Vector2 newVelocity = (touch.position - inputState.position) / Time.deltaTime;
+                        inputState.acceleration = (newVelocity - inputState.velocity) / Time.deltaTime;
+                        inputState.velocity = newVelocity;
 
                         updateDragStrength();
                         break;
@@ -67,9 +67,9 @@ public class InputDragBehavior : MonoBehaviour
                 case TouchPhase.Ended:
                 case TouchPhase.Canceled:
                     {
-                        inputSupport.state = DragState.None;
-                        inputSupport.acceleration = Vector2.zero;
-                        inputSupport.velocity = Vector2.zero;
+                        inputState.state = DragState.None;
+                        inputState.acceleration = Vector2.zero;
+                        inputState.velocity = Vector2.zero;
                         break;
                     }
                 default:
@@ -79,7 +79,7 @@ public class InputDragBehavior : MonoBehaviour
                     }
             }
 
-            inputSupport.position = touch.position;
+            inputState.position = touch.position;
 
             hasAnyTouchInputUpdates = true;
         }
@@ -95,19 +95,19 @@ public class InputDragBehavior : MonoBehaviour
         // bool rightMouseButtonDown = Input.GetMouseButton(1);
         // bool middleMouseButtonDown = Input.GetMouseButton(2);
 
-        switch (inputSupport.state)
+        switch (inputState.state)
         {
             case DragState.None:
                 {
                     if (leftMouseButtonDown)
                     {
-                        inputSupport.state = DragState.Stationary;
-                        inputSupport.acceleration = Vector2.zero;
-                        inputSupport.velocity = Vector2.zero;
-                        inputSupport.position = Input.mousePosition;
-                        inputSupport.mouseDown = true;
+                        inputState.state = DragState.Stationary;
+                        inputState.acceleration = Vector2.zero;
+                        inputState.velocity = Vector2.zero;
+                        inputState.position = Input.mousePosition;
+                        inputState.mouseDown = true;
                     }
-                    else if (inputSupport.mouseDown)
+                    else if (inputState.mouseDown)
                     {
                         resetMouseDownState();
                     }
@@ -120,7 +120,7 @@ public class InputDragBehavior : MonoBehaviour
                     {
                         updateMouseMovementState();
                     }
-                    else if (inputSupport.mouseDown)
+                    else if (inputState.mouseDown)
                     {
                         resetMouseDownState();
                     }
@@ -135,7 +135,7 @@ public class InputDragBehavior : MonoBehaviour
                     {
                         updateMouseMovementState();
                     }
-                    else if (inputSupport.mouseDown)
+                    else if (inputState.mouseDown)
                     {
                         resetMouseDownState();
                     }
@@ -150,43 +150,43 @@ public class InputDragBehavior : MonoBehaviour
     private void updateMouseMovementState()
     {
         Vector2 mousePosOnScreen = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        Vector2 newVelocity = (mousePosOnScreen - inputSupport.position) / Time.deltaTime;
-        inputSupport.acceleration = (mousePosOnScreen - inputSupport.position) / Time.deltaTime;
-        inputSupport.velocity = newVelocity;
-        inputSupport.position = mousePosOnScreen;
+        Vector2 newVelocity = (mousePosOnScreen - inputState.position) / Time.deltaTime;
+        inputState.acceleration = (mousePosOnScreen - inputState.position) / Time.deltaTime;
+        inputState.velocity = newVelocity;
+        inputState.position = mousePosOnScreen;
 
         updateDragStrength();
-
-        Debug.Log($"New input state: a {inputSupport.acceleration} v {inputSupport.velocity} s {inputSupport.speed} p {inputSupport.position}");
     }
 
     private void resetMouseDownState()
     {
-        inputSupport.state = DragState.None;
-        inputSupport.acceleration = Vector2.zero;
-        inputSupport.velocity = Vector2.zero;
-        inputSupport.position = Input.mousePosition;
-        inputSupport.mouseDown = false;
+        inputState.state = DragState.None;
+        inputState.acceleration = Vector2.zero;
+        inputState.velocity = Vector2.zero;
+        inputState.position = Input.mousePosition;
+        inputState.mouseDown = false;
     }
 
     private void updateDragStrength()
     {
-        if (inputSupport.acceleration. <= MaxMagnitudeForLightDrag)
+        if (inputState.acceleration.magnitude <= MaxMagnitudeForLightDrag)
         {
-            inputSupport.state = DragState.Light;
+            inputState.state = DragState.Light;
         }
-        else if (inputSupport.acceleration.magnitude <= MaxMagnitudeForMediumDrag)
+        else if (inputState.acceleration.magnitude <= MaxMagnitudeForMediumDrag)
         {
-            inputSupport.state = DragState.Medium;
+            inputState.state = DragState.Medium;
         }
         else
         {
-            inputSupport.state = DragState.Strong;
+            inputState.state = DragState.Strong;
         }
+
+        Debug.Log($"New input state: a {inputState.acceleration} v {inputState.velocity} s {inputState.speed} p {inputState.position}");
     }
 }
 
-public class InputSupport
+public class InputState
 {
     public Vector2 position { get; set; } = Vector2.zero;
     public Vector2 velocity { get; set; } = Vector2.zero;
