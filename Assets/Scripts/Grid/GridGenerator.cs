@@ -9,14 +9,14 @@ public class GridGenerator : MonoBehaviour
     // using the X and Z axis as the Y anx X coordinates for the grid system respectively
 
     // The prefab to be used for the grid
-    public GridCell gridPrefab;
+    public GridCell cubeCellPrefab;
 
     // The size of the grid
     public int gridX = 10;
     public int gridY = 10;
 
     // todo: this will be a collection of tile scriptable objects
-    private Dictionary<Vector2, bool> gridState;
+    private Dictionary<Vector2, GridCell> gridState = new Dictionary<Vector2, GridCell>();
 
     private Transform _cameraTransform;
 
@@ -44,14 +44,14 @@ public class GridGenerator : MonoBehaviour
                 // And if so, what type of cell it is
 
                 // Create a new grid prefab
-                GridCell newGridPrefab = Instantiate(gridPrefab);
+                GridCell newGridPrefab = Instantiate(cubeCellPrefab);
 
                 // In root grid, z-axis == y-axis
                 // Set the position of the new grid prefab
                 newGridPrefab.transform.position = new Vector3(x, 0, z);
 
-                // set it visible for now
-                gridState[new Vector2(x, z)] = true;
+                // track the grid state in a simple lookup table
+                gridState[new Vector2(x, z)] = newGridPrefab;
 
                 // Set the parent of the new grid prefab
                 newGridPrefab.transform.parent = this.transform;

@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4110819515666505568}
+  - component: {fileID: 5250412386502833453}
   - component: {fileID: 1124064893504772520}
   - component: {fileID: 8395655405407583604}
   - component: {fileID: 3129327062669139262}
   m_Layer: 0
-  m_Name: TestCube
+  m_Name: CubeCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,6 +35,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5250412386502833453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201086949024678401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53175dd0efa179489ad58a6feebb79e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &1124064893504772520
 MeshFilter:
   m_ObjectHideFlags: 0
