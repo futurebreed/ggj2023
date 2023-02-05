@@ -6,7 +6,7 @@ D,D,D,D,D,R,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,E,E,E,E,E,E,E,D,D,D,D
-D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,E,E,E,E,E,E,E,D,D,D,D,D,E,E,E,E,E
+D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,E,E,E,E,E,E,E,D,D,D,D,D,E,E,E,E,X
 D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,R,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
