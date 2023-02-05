@@ -2,7 +2,7 @@ D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
-D,D,D,D,D,S,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
+D,D,D,D,D,R,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
@@ -10,7 +10,7 @@ D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
-D,D,D,D,D,D,D,D,S,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
+D,D,D,D,D,D,D,D,R,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
-D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,S,D,D,D,D,D
+D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,R,D,D,D,D,D
 D,D,D,D,D,D,D,D,D,D,D,D,D,E,E,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D
