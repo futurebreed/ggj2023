@@ -75,32 +75,45 @@ public class rope : MonoBehaviour
     }
 
     public void Physics(){
+        if ((inputBehavior.inputState.state == InputMovementState.None) || (inputBehavior.inputState.state == InputMovementState.Moving))
+        {
+            // In these states, the input is not dragging at all, so we should not animate the rope as a result.
+            return;
+        }
+
         RopeSegment zero = ropeSegments[0];
-        zero.posNow = Camera.main.ScreenToWorldPoint(inputBehavior.inputState.position + new Vector3(0,0,4f));
+        zero.posNow = Camera.main.ScreenToWorldPoint(inputBehavior.inputState.position + new Vector3(0, 0, 4f));
         ropeSegments[0] = zero;
 
-        for(int i=0;i<segmentLength-1;i++){
+        for (int i = 0; i < segmentLength - 1; i++)
+        {
             RopeSegment firstSeg = ropeSegments[i];
-            RopeSegment secondSeg = ropeSegments[i+1];
+            RopeSegment secondSeg = ropeSegments[i + 1];
             float dist = (firstSeg.posNow - secondSeg.posNow).magnitude;
             float error = Mathf.Abs(dist - ropeSegLen);
             Vector2 changeDir = Vector2.zero;
 
-            if(dist > ropeSegLen) {
+            if (dist > ropeSegLen)
+            {
                 changeDir = (firstSeg.posNow - secondSeg.posNow).normalized;
-            } else if(dist < ropeSegLen) {
+            }
+            else if (dist < ropeSegLen)
+            {
                 changeDir = (secondSeg.posNow - firstSeg.posNow).normalized;
             }
 
             Vector2 changeAmount = changeDir * error;
-            if(i !=0) {
+            if (i != 0)
+            {
                 firstSeg.posNow -= changeAmount * elasticity;
                 ropeSegments[i] = firstSeg;
                 secondSeg.posNow += changeAmount * elasticity;
-                ropeSegments[i+1] = secondSeg;
-            } else {
+                ropeSegments[i + 1] = secondSeg;
+            }
+            else
+            {
                 secondSeg.posNow += changeAmount;
-                ropeSegments[i+1] = secondSeg;
+                ropeSegments[i + 1] = secondSeg;
             }
         }
     }

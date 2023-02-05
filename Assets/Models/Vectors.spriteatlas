@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Vectors
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: eded4ba13f1882740bba310113fff34e, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 4ff25c1034f919143a4ab17be57b8ff5, type: 3}
+  - {fileID: 21300000, guid: 07049f80808624040b59b90471797f55, type: 3}
+  - {fileID: 21300000, guid: 89a47ea190ef6ad489cb40da6c60f8a6, type: 3}
+  - {fileID: 21300000, guid: 1b49c822f1f459e49bc2686cb46d2fc4, type: 3}
+  - {fileID: 21300000, guid: 84074832bd6520c488f86ab81dd36112, type: 3}
+  - {fileID: 21300000, guid: 1f1d43f2e7e5664459f2f7ce211429dd, type: 3}
+  - {fileID: 21300000, guid: 39c11833153ab414a8987824d8378242, type: 3}
+  - {fileID: 21300000, guid: ba732f149bf873743b9443860bfa8e47, type: 3}
+  - {fileID: 21300000, guid: 84bb5b74c718a9a4d89ec42b0d479af9, type: 3}
+  - {fileID: 21300000, guid: 0606df962bbe57c4b990b39c009d2a16, type: 3}
+  - {fileID: 21300000, guid: 78d16407fe689794691375e5edc4c913, type: 3}
+  - {fileID: 21300000, guid: 1cc338e762ed1ac4c8f1d86418e7b525, type: 3}
+  - {fileID: 21300000, guid: 4065d708edd7c6245854b28ed39a5f7d, type: 3}
+  - {fileID: 21300000, guid: 36265f387af7f4749a938209478fc996, type: 3}
+  - {fileID: 21300000, guid: 500c4a48cdef883498562ac4bd64f07c, type: 3}
+  - {fileID: 21300000, guid: dcfca67b307d19542ad44564023a58d0, type: 3}
+  - {fileID: 21300000, guid: fc8f63bb23558c44bb462855bd9c1b83, type: 3}
+  - {fileID: 21300000, guid: 6dc5b3bbc3f0b9946be6d70d6ed4fae4, type: 3}
+  - {fileID: 21300000, guid: 1a9138fcd61e0834d929ca07ff19a903, type: 3}
+  - {fileID: 21300000, guid: 73b7b91da22420344aaa9fb7f89c5b04, type: 3}
+  - {fileID: 21300000, guid: b87ac36e14c9b6b41a1d7ef536aa4b61, type: 3}
+  - {fileID: 21300000, guid: 779a995fecedf164b894a42fbde30d0a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Pop3
+  - Confetti_2
+  - Confetti_7
+  - Pop4
+  - Leaf
+  - Star1
+  - Heart2
+  - Star2
+  - Confetti_6
+  - Confetti_1
+  - Confetti_8
+  - Pop
+  - Heart
+  - Confetti_3
+  - Star
+  - Confetti_4
+  - Confetti
+  - Heart1
+  - Pop6
+  - Pop5
+  - Pop2
+  - Confetti_5
+  m_RenderDataMap: {}
+  m_Tag: Vectors
+  m_IsVariant: 0
