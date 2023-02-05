@@ -59,12 +59,7 @@ public class rootmanager : MonoBehaviour
                     if (InputDragBehavior.inputState.state != InputMovementState.DragStationary)
                     {
                         rootPosition = cursorPosition;
-
-                        if (!playingGrowthSound)
-                        {
-                            soundHandler.Growth();
-                            playingGrowthSound = true;
-                        }
+                        soundHandler.Growth();
                     }
                     else
                     {
@@ -95,8 +90,7 @@ public class rootmanager : MonoBehaviour
 
             if (InputDragBehavior.inputState.state != InputMovementState.DragLight &&
                 InputDragBehavior.inputState.state != InputMovementState.DragMedium &&
-                InputDragBehavior.inputState.state != InputMovementState.DragStrong &&
-                playingGrowthSound)
+                InputDragBehavior.inputState.state != InputMovementState.DragStrong)
             {
                 soundHandler.StopGrowth();
             }

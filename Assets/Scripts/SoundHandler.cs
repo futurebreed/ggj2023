@@ -26,7 +26,7 @@ public class SoundHandler : MonoBehaviour
     public FMODUnity.EventReference RootGrowth;
     FMOD.Studio.EventInstance rootGrowth;
 
-    
+    public bool growthPlaying = false;
 
 //one shots
     public FMODUnity.EventReference HoverMenu;
