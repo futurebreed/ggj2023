@@ -16,7 +16,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: edcbc1cf98e0d0e4db6734587cf55d52,
+      objectReference: {fileID: 21300000, guid: 13354d0399c03df4bab2cd5c8d16560d,
         type: 3}
     - target: {fileID: 3470451580401450432, guid: 5d6c8656ae920d3409f096c698d8968f,
         type: 3}
@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 8492973310608064740, guid: 5d6c8656ae920d3409f096c698d8968f,
         type: 3}
       propertyPath: m_Name
-      value: RootNodeTest
+      value: LargeRootNode
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8210772024481857932, guid: 5d6c8656ae920d3409f096c698d8968f, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,36 +6,79 @@ using UnityEngine;
 
 public class rootmanager : MonoBehaviour
 {
-    public GameObject rootNode;
+    public GameObject smallRoot;
+    public GameObject largeRoot;
     public int rootDepth;
+    public Vector3 rootPosition;
+    public HashSet<Tuple<int,int>> newroots = new HashSet<Tuple<int, int>>();
+    public int latency;
+    private int waitCounter;
 
     // Start is called before the first frame update
     void Start()
     {
-        generateRoots(rootDepth,this.GameObject());
+        float center = GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth/2.0f;
+        rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight,-1);
+        waitCounter = latency;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        waitCounter--;
+        if (waitCounter == 0)
+        {
+            if (Input.mousePosition.x < rootPosition.x&& Input.mousePosition.x>=0)
+            {
+                rootPosition += Vector3.left;
+            }
+            else if (Input.mousePosition.x<GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth)
+            {
+                rootPosition += Vector3.right;
+            }
+            rootPosition += Vector3.down;
+            GameObject newRoot = Instantiate(smallRoot, this.transform);
+            newRoot.transform.position = rootPosition;
+            waitCounter = latency;
+        }
+        /*int xloc = (int)Input.mousePosition.x;
+        int yloc = (int)Input.mousePosition.y;
+        Tuple<int, int> mosPos = new(xloc, yloc);
+        //if (xloc < rootPosition.x + 1 && xloc > rootPosition.x - 1 && yloc < rootPosition.y + 1 && yloc > rootPosition.y - 1)
+        if (true)
+        {
+            if(!newroots.Contains(mosPos))
+            {
+                if (newroots.Count >= rootDepth)
+                {
+
+                }
+                else
+                {
+                    newroots.Add(mosPos);
+                    
+                    
+                }
+            }
+        }
+        */
     }
 
     public void generateRoots(int iters_left, GameObject seed)
     {
         if (iters_left>0)
         {
-            int subdivisions = Random.Range(0, 4);
+            int subdivisions = 5;
             for (int i = 0; i < subdivisions; i++)
             {
-                Transform newPosition=seed.GetComponent<Transform>();
-                GameObject newNode = Instantiate(rootNode, newPosition);
-                RelativeJoint2D newJoint = newNode.AddComponent<RelativeJoint2D>();
-                newJoint.maxForce = seed.GetComponent<RelativeJoint2D>().maxForce / 2;
-                newJoint.maxTorque = seed.GetComponent<RelativeJoint2D>().maxTorque / 2;
-                newJoint.breakForce = newJoint.maxForce;
-                newJoint.breakTorque = newJoint.breakTorque;
-                generateRoots(iters_left - 1, newNode);
+                //GameObject newNode = Instantiate(rootNode, seed.transform);
+
+                //RelativeJoint2D newJoint = newNode.AddComponent<RelativeJoint2D>();
+                //newJoint.maxForce = seed.GetComponent<RelativeJoint2D>().maxForce / 2;
+                //newJoint.maxTorque = seed.GetComponent<RelativeJoint2D>().maxTorque / 2;
+                //newJoint.breakForce = newJoint.maxForce;
+                //newJoint.breakTorque = newJoint.breakTorque;
+                //generateRoots(iters_left - 1, newNode);
             }
         }
     }
