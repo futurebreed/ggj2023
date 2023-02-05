@@ -14,7 +14,7 @@ public class rootmanager : MonoBehaviour
 
     public int rootDepth;
     public Vector3 rootPosition;
-    public HashSet<Tuple<int,int>> newroots = new HashSet<Tuple<int, int>>();
+    public HashSet<Vector3> newroots = new HashSet<Vector3>();
     public int latency;
     private int waitCounter;
 
@@ -23,6 +23,7 @@ public class rootmanager : MonoBehaviour
     {
         float center = GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth / 2.0f;
         rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight, -1);
+        this.transform.position = rootPosition;
         waitCounter = latency;
     }
 
@@ -47,18 +48,34 @@ public class rootmanager : MonoBehaviour
 
                 Debug.Log($"Dragging on Grid position: ({gridX}, {gridY})");
 
-                if ((InputDragBehavior.inputState.position.x < rootPosition.x) && (InputDragBehavior.inputState.position.x >= 0))
+                Vector3 cursorPosition = new Vector3(gridX, gridY, -1);
+                if (gridX < rootPosition.x + 2 && gridX > rootPosition.x - 2 && gridY < rootPosition.y + 2 && gridY > rootPosition.y - 2)
                 {
-                    rootPosition += Vector3.left;
+                    rootPosition = cursorPosition;
+                    if (!newroots.Contains(cursorPosition))
+                    {
+                        if (newroots.Count < rootDepth)
+                        {
+                            GameObject newRoot = Instantiate(smallRoot, transform);
+                            newRoot.transform.position = cursorPosition;
+                            newroots.Add(cursorPosition);
+                        }
+                        else
+                        {
+                            for (int i = 0; i < transform.childCount; i++)
+                            {
+                                transform.GetChild(i).localScale *= 2;
+                            }
+                            GameObject newRoot = Instantiate(smallRoot, transform);
+                            newRoot.transform.position = cursorPosition;
+                            newroots.Add(cursorPosition);
+                            float center = GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth / 2.0f;
+                            rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight, -1);
+                            newroots = new HashSet<Vector3>();
+                        }
+                    }
                 }
-                else if (InputDragBehavior.inputState.position.x < GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth)
-                {
-                    rootPosition += Vector3.right;
-                }
-
-                rootPosition += Vector3.down;
-                GameObject newRoot = Instantiate(smallRoot, this.transform);
-                newRoot.transform.position = rootPosition;
+                
                 waitCounter = latency;
             }
         }
@@ -67,7 +84,7 @@ public class rootmanager : MonoBehaviour
         /*int xloc = (int)input.inputState.position.x;
         int yloc = (int)input.inputState.position.y;
         Tuple<int, int> mosPos = new(xloc, yloc);
-        //if (xloc < rootPosition.x + 1 && xloc > rootPosition.x - 1 && yloc < rootPosition.y + 1 && yloc > rootPosition.y - 1)
+        //if (xloc < rootPosition.x + 2 && xloc > rootPosition.x - 2 && yloc < rootPosition.y + 1 && yloc > rootPosition.y - 1)
         if (true)
         {
             if(!newroots.Contains(mosPos))
