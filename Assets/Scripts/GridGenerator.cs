@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
-
-    // This script will generate an NxM grid of Cube prefabs
-    // using the X and Z axis as the Y anx X coordinates for the grid system respectively
-
-    // The prefab to be used for the grid
+    // The prefabs to be used for the grid
     public GridCell emptyCellPrefab, cubeCellPrefab, sphereCellPrefab, dirtPrefab, rockPrefab, exitCell;
 
     // The size of the grid
