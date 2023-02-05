@@ -48,10 +48,11 @@ public class SceneNavigationController : MonoBehaviour
         SceneManager.LoadScene((int)SceneMapping.GameScene, LoadSceneMode.Single);
     }
 
-    public static void PlayEpicDoot()
+    public void PlayEpicDoot()
     {
         // Coming soon
         // use soundHandler
+        soundHandler.PlayJukebox(SoundHandler.JukeboxSong.DootDoot);
     }
 
     public static void ExitGame()

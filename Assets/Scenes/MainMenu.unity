@@ -512,6 +512,13 @@ MonoBehaviour:
       Data3: -1117265757
       Data4: -815486812
     Path: event:/ConfirmMenu
+  DootDoot:
+    Guid:
+      Data1: 737129958
+      Data2: 1286545193
+      Data3: -301158517
+      Data4: 1833605989
+    Path: event:/DootDoot
   rootState: 
   gridState: 
 --- !u!114 &181742640
