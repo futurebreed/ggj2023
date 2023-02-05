@@ -62,7 +62,7 @@ sysinfo.txt
 crashlytics-build.properties
 
 *.dwlt
-UserSettings/Layouts/default-2021.dwlt
+/[Uu]serSettings/Layouts/default-2021.dwlt
 
 # Never ignore DLLs in the FMOD subfolder.
 !/[Aa]ssets/Plugins/FMOD/**/lib/*
