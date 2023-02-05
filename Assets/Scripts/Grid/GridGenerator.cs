@@ -10,7 +10,7 @@ public class GridGenerator : MonoBehaviour
     // using the X and Z axis as the Y anx X coordinates for the grid system respectively
 
     // The prefab to be used for the grid
-    public GridCell emptyCellPrefab, cubeCellPrefab, sphereCellPrefab;
+    public GridCell emptyCellPrefab, cubeCellPrefab, sphereCellPrefab, dirtPrefab;
 
     // The size of the grid
     public int gridWidth = 32;
@@ -80,10 +80,16 @@ public class GridGenerator : MonoBehaviour
                     case 'E':
                         prefabToSpawn = emptyCellPrefab;
                         break;
+                    case 'D':
+                        prefabToSpawn = dirtPrefab;
+                        break;
                 }
 
                 // Create a new grid prefab
                 GridCell newGridPrefab = Instantiate(prefabToSpawn);
+
+                // this probably should be a ctor thing but lolmonobehaviour
+                newGridPrefab.SetGridDimensions(gridX, gridY, gridWidth, gridHeight);
 
                 // In root grid, z-axis == y-axis
                 // Set the position of the new grid prefab
