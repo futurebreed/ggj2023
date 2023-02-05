@@ -16,15 +16,16 @@ public class GridGenerator : MonoBehaviour
     public int gridWidth = 32;
     public int gridHeight = 16;
 
-    // TODO: turn this into an enum? idfk
-    private char[,] _tileMap;
     private Transform _cameraTransform;
+    private Grid _grid;
+    public Grid Grid => _grid;
 
     // Start is called before the first frame update
     void Awake()
     {
         // NOTE: if we want to make variable grid sizes this will need to be changed
-        _tileMap = new char[gridWidth, gridHeight];
+        char[,] tileMap = new char[gridWidth, gridHeight];
+        _grid = new Grid(gridWidth, gridHeight);
 
         // Grab the main camera's transform so we can
         // position it relative to the grid
@@ -32,7 +33,7 @@ public class GridGenerator : MonoBehaviour
 
         // Pull the current level from the scene navigation controller singleton
         int currentStage = SceneNavigationController.ActiveStage;
-        
+
         // The file level format is a 32x16 comma separated list of characters
         // representing the tilemap
         string[] rows = File.ReadAllLines(Path.Combine(Application.streamingAssetsPath, $"Levels//Level{currentStage}.txt"));
@@ -49,16 +50,16 @@ public class GridGenerator : MonoBehaviour
             for (int j = 0; j < columns.Length; j++)
             {
                 // Set the tilemap data
-                _tileMap[j, gridHeight - i - 1] = columns[j][0];
+                tileMap[j, gridHeight - i - 1] = columns[j][0];
             }
         }
 
         // Generate the grid
-        GenerateGrid();
+        GenerateGrid(tileMap);
     }
 
     // Generate the grid
-    void GenerateGrid()
+    void GenerateGrid(char[,] tileMap) 
     {
         // Loop through the grid width
         for (int gridX = 0; gridX < gridWidth; gridX++)
@@ -67,45 +68,55 @@ public class GridGenerator : MonoBehaviour
             for (int gridY = 0; gridY < gridHeight; gridY++)
             {
                 // Sample the cell-type from the level's tile map
-                char cellType = _tileMap[gridX, gridY];
-                GridCell prefabToSpawn = emptyCellPrefab;
+                char cellType = tileMap[gridX, gridY];
 
-                switch (cellType)
-                {
-                    case 'C':
-                        prefabToSpawn = cubeCellPrefab;
-                        break;
-                    case 'S':
-                        prefabToSpawn = sphereCellPrefab;
-                        break;
-                    case 'E':
-                        prefabToSpawn = emptyCellPrefab;
-                        break;
-                    case 'D':
-                        prefabToSpawn = dirtPrefab;
-                        break;
-                    case 'R':
-                        prefabToSpawn = rockPrefab;
-                        break;
-                }
-
-                // Create a new grid prefab
-                GridCell newGridPrefab = Instantiate(prefabToSpawn);
-
-                // this probably should be a ctor thing but lolmonobehaviour
-                newGridPrefab.SetGridDimensions(gridX, gridY, gridWidth, gridHeight);
-
-                // In root grid, z-axis == y-axis
-                // Set the position of the new grid prefab
-                newGridPrefab.transform.position = new Vector3(gridX, gridY, 0);
-
-                // Set the parent of the new grid prefab
-                newGridPrefab.transform.parent = this.transform;
+                CreateGridCellFromTile(gridX, gridY, cellType);
             }
         }
 
         // Position the camera in the center of the grid
         _cameraTransform.transform.position = new Vector3((float)gridWidth / 2, (float)gridHeight / 2, _cameraTransform.position.z);
+    }
+
+    private void CreateGridCellFromTile(int gridX, int gridY, char cellType)
+    {
+        GridCell prefabToSpawn = emptyCellPrefab;
+
+        switch (cellType)
+        {
+            case 'C':
+                prefabToSpawn = cubeCellPrefab;
+                break;
+            case 'S':
+                prefabToSpawn = sphereCellPrefab;
+                break;
+            case 'E':
+                prefabToSpawn = emptyCellPrefab;
+                break;
+            case 'D':
+                prefabToSpawn = dirtPrefab;
+                break;
+            case 'R':
+                prefabToSpawn = rockPrefab;
+                break;
+        }
+
+        // Create a new grid prefab
+        GridCell newGridPrefab = Instantiate(prefabToSpawn);
+        newGridPrefab.name = $"{newGridPrefab.GetType().Name}({gridX},{gridY})";
+
+        // this probably should be a ctor thing but lolmonobehaviour
+        newGridPrefab.SetGridDimensions(gridX, gridY, gridWidth, gridHeight);
+
+        // In root grid, z-axis == y-axis
+        // Set the position of the new grid prefab
+        newGridPrefab.transform.position = new Vector3(gridX, gridY, 0);
+
+        // Set the parent of the new grid prefab
+        newGridPrefab.transform.parent = this.transform;
+
+        // Set the grid cell's position in the grid
+        _grid.SetCell(gridX, gridY, newGridPrefab);
     }
 
 }
