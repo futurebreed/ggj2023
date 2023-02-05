@@ -169,8 +169,6 @@ public class InputDragBehavior : MonoBehaviour
                 }
         }
 
-        Debug.Log($"Mouse state: Position {inputState.position} Velocity {inputState.velocity} State {inputState.state}");
-
         return hasAnyMouseInputUpdates;
     }
 
