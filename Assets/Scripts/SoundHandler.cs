@@ -11,9 +11,11 @@ public class SoundHandler : MonoBehaviour
         ConfirmMenu,
         rockCollide,
         waterCollect,
-        rootGrowth
+        rootGrowth,
+        DootDoot
     }
 
+//instances to be able to track
     public FMODUnity.EventReference RootGrowth;
     FMOD.Studio.EventInstance rootGrowth;
 
@@ -28,15 +30,17 @@ public class SoundHandler : MonoBehaviour
 
     // private RockCell rockCell;
 
+//one shots
     public FMODUnity.EventReference HoverMenu;
     public FMODUnity.EventReference ConfirmMenu;
+    public FMODUnity.EventReference DootDoot;
 
 
     public string rootState = null;
     public string gridState = null;
 
     // void Awake () {
-    //     rockCell = GetComponent<RockCell>();
+    //     rockCell = GetComponent<RockCell>(); //i dont understand getcomponent stuff at all yet
     // }
 
     void Start()
@@ -59,6 +63,12 @@ public class SoundHandler : MonoBehaviour
     }
 
     public void PlayJukebox(JukeboxSong jukeboxSong) {
+        FMOD.Studio.PLAYBACK_STATE playbackState;
+        homeSweetHome.getPlaybackState(out playbackState);
+        if(playbackState == FMOD.Studio.PLAYBACK_STATE.PLAYING){
+            homeSweetHome.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+
         switch (jukeboxSong) {
             case JukeboxSong.HoverMenu: {
                 FMODUnity.RuntimeManager.PlayOneShot(HoverMenu, Camera.main.transform.position);
@@ -66,6 +76,10 @@ public class SoundHandler : MonoBehaviour
             }
             case JukeboxSong.ConfirmMenu: {
                 FMODUnity.RuntimeManager.PlayOneShot(ConfirmMenu, Camera.main.transform.position);
+                break;
+            }
+            case JukeboxSong.DootDoot: {
+                FMODUnity.RuntimeManager.PlayOneShot(DootDoot, Camera.main.transform.position);
                 break;
             }
             case JukeboxSong.rockCollide: {
@@ -83,6 +97,11 @@ public class SoundHandler : MonoBehaviour
             default: {
                 break;
             }
+        }
+
+        homeSweetHome.getPlaybackState(out playbackState);
+        if(playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING){
+            homeSweetHome.start();
         }
     }
 
