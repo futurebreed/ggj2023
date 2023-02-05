@@ -6,7 +6,7 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     // The prefabs to be used for the grid
-    public GridCell emptyCellPrefab, cubeCellPrefab, sphereCellPrefab, dirtPrefab, rockPrefab, exitCell;
+    public GridCell emptyCellPrefab, dirtPrefab, rockPrefab, grassCell, seedCell, exitCell;
 
     // The size of the grid
     public int gridWidth = 32;
@@ -89,11 +89,11 @@ public class GridGenerator : MonoBehaviour
 
         switch (cellType)
         {
-            case 'C':
-                prefabToSpawn = cubeCellPrefab;
+            case 'G':
+                prefabToSpawn = grassCell;
                 break;
             case 'S':
-                prefabToSpawn = sphereCellPrefab;
+                prefabToSpawn = seedCell;
                 break;
             case 'E':
                 prefabToSpawn = emptyCellPrefab;

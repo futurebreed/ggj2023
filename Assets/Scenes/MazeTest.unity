@@ -418,6 +418,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5580444054930162737, guid: 1903588e149ac2e4f9dc50718f677ae9,
+        type: 3}
+      propertyPath: seedCell
+      value: 
+      objectReference: {fileID: 6221879589769095725, guid: 0b29eba3d7e9cf0469f7453210711512,
+        type: 3}
+    - target: {fileID: 5580444054930162737, guid: 1903588e149ac2e4f9dc50718f677ae9,
+        type: 3}
+      propertyPath: grassCell
+      value: 
+      objectReference: {fileID: 1218759462212963979, guid: 096027f5fdde85045acb27e03feebd9a,
+        type: 3}
     - target: {fileID: 5580444054930162739, guid: 1903588e149ac2e4f9dc50718f677ae9,
         type: 3}
       propertyPath: m_Name
