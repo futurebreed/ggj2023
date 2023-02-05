@@ -63,6 +63,7 @@ public class rootmanager : MonoBehaviour
                     }
                     else
                     {
+                        soundHandler.StopGrowth();
                         return;
                     }
 
