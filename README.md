@@ -1,4 +1,4 @@
-##  A-maze-n-Roots
+##  Amazen' Roots
 
 ### Setup
 
