@@ -97,3 +97,8 @@ fmod_editor.log
 
 # Temp FMod files and cache for runtime and build
 .**/
+Assets/Plugins/FMOD/platforms/mac/lib/fmodstudio.bundle/Contents/Info.plist
+Assets/Models/Vectors.spriteatlas
+Assets/Plugins/FMOD/platforms/mac/lib/fmodstudioL.bundle/Contents/Info.plist
+Assets/Plugins/FMOD/platforms/mac/lib/resonanceaudio.bundle/Contents/Info.plist
+ProjectSettings/ShaderGraphSettings.asset
