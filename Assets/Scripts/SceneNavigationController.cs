@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneNavigationController : MonoBehaviour
 {
-    //[SerializeField]
-    //SoundHandler soundHandler; // I wanna play sounds and you can't stop me
+    [SerializeField]
+    SoundHandler soundHandler; // I wanna play sounds and you can't stop me
 
     enum SceneMapping : int
     {
@@ -35,11 +35,12 @@ public class SceneNavigationController : MonoBehaviour
         }
     }
 
-    public static void NavigateToLevel(int stage)
+    public void NavigateToLevel(int stage)
     {
         // TODO if stage number is same as current, it's a restart of the current level
 
         // TODO stop/blend music/sounds if going
+        soundHandler.PlayJukebox(SoundHandler.JukeboxSong.ConfirmMenu);
 
         ActiveSceneMapping = SceneMapping.GameScene;
         ActiveStage = stage;
