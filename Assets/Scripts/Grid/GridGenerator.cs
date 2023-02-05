@@ -36,7 +36,9 @@ public class GridGenerator : MonoBehaviour
         // representing the tilemap
         string[] rows = File.ReadAllLines(Path.Combine(Application.streamingAssetsPath, "Levels//ShrimpleMaze.txt"));
 
-        // Loop through the rows
+        // The coordinates in the file are read from Y=height to Y=0 and X=0 to X=width
+        // The grid is rendered from Y=0 to Y=height and X=0 to X=width
+        // So we need to reverse the Y axis
         for (int i = 0; i < rows.Length; i++)
         {
             // Split the row into columns
@@ -46,7 +48,7 @@ public class GridGenerator : MonoBehaviour
             for (int j = 0; j < columns.Length; j++)
             {
                 // Set the tilemap data
-                _tileMap[j, i] = columns[j][0];
+                _tileMap[j, gridHeight - i - 1] = columns[j][0];
             }
         }
 
