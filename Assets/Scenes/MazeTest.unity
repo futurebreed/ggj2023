@@ -400,9 +400,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081b03d0045f5a640b5b68216b630ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyCellPrefab: {fileID: 6961890511030462003, guid: d8585085b04b9f945876a823909fd32e,
+    type: 3}
   cubeCellPrefab: {fileID: 5250412386502833453, guid: d0bdae7bced180d42bb800a1ae398aa6,
     type: 3}
   sphereCellPrefab: {fileID: 5598337128332790773, guid: 2da4b08ec5750b643b2e280d1cdbc188,
     type: 3}
-  gridX: 32
-  gridY: 16
+  gridWidth: 32
+  gridHeight: 16
