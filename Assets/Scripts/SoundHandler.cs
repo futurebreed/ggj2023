@@ -1,6 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum JukeboxSong
+{
+    HoverMenu,
+    ConfirmMenu,
+    rockCollide,
+    waterCollect,
+    rootGrowth
+}
 
 public class SoundHandler : MonoBehaviour
 {
@@ -13,7 +21,13 @@ public class SoundHandler : MonoBehaviour
     public FMODUnity.EventReference HomeSweetHome;
     FMOD.Studio.EventInstance homeSweetHome;
 
+    public FMODUnity.EventReference RockCollision;
+    FMOD.Studio.EventInstance rockCollide;
+
     // private RockCell rockCell;
+
+    public FMODUnity.EventReference HoverMenu;
+    public FMODUnity.EventReference ConfirmMenu;
 
 
     public string rootState = null;
@@ -38,8 +52,36 @@ public class SoundHandler : MonoBehaviour
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(waterCollect, Camera.main.transform);
 
         //place holder
-        // rockCollide = FMODUnity.RuntimeManager.CreateInstance(RockCollection);
-        // FMODUnity.RuntimeManager.AttachInstanceToGameObject(rockCollide, Camera.main.transform);
+        rockCollide = FMODUnity.RuntimeManager.CreateInstance(RockCollision);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(rockCollide, Camera.main.transform);
+    }
+
+    public void PlayJukebox(JukeboxSong jukeboxSong) {
+        switch (jukeboxSong) {
+            case JukeboxSong.HoverMenu: {
+                FMODUnity.RuntimeManager.PlayOneShot(HoverMenu, Camera.main.transform.position);
+                break;
+            }
+            case JukeboxSong.ConfirmMenu: {
+                FMODUnity.RuntimeManager.PlayOneShot(ConfirmMenu, Camera.main.transform.position);
+                break;
+            }
+            case JukeboxSong.rockCollide: {
+                rockCollide.start();
+                break;
+            }
+            case JukeboxSong.waterCollect: {
+                waterCollect.start();
+                break;
+            }
+            case JukeboxSong.rootGrowth: {
+                rootGrowth.start();
+                break;
+            }
+            default: {
+                break;
+            }
+        }
     }
 
 
