@@ -1,4 +1,4 @@
-## Global Game Jam 2023 Creatively Named Root Game
+##  A-maze-n-Roots
 
 ### Setup
 
