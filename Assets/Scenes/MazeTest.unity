@@ -406,5 +406,7 @@ MonoBehaviour:
     type: 3}
   sphereCellPrefab: {fileID: 5598337128332790773, guid: 2da4b08ec5750b643b2e280d1cdbc188,
     type: 3}
+  dirtPrefab: {fileID: 6337019299987878559, guid: 62a27937affc16a40813b48946451185,
+    type: 3}
   gridWidth: 32
   gridHeight: 16
