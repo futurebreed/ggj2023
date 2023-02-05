@@ -4,17 +4,17 @@ The rootimentary level format is a simple text-based format for describing level
 
 ## Level format
 
-Levels should be stored in a folder called `Levels` in the `StreamingAssets` folder. They should be txt files, following the naming convention Level{Number}.txt. For example, the first level should be called Level1.txt, the second Level2.txt, and so on. Level0.txt will be loaded by the
+Levels should be stored in a folder called `Levels` in the `StreamingAssets` folder. They should be txt files, following the naming convention `Level{Number}.txt`. For example, the first level should be called `Level1.txt`, the second `Level2.txt`, and so on. `Level0.txt` will be loaded by the
 MazeTest/GridGenerator prefab in debug mode for now.
 
-The text files themselves are simple, comma delimited text files. They should be a power of two in order for the grid to be square (currently 32x16). Each line of the file represents a row of the grid. Each cell is represented by a single character. The following characters are supported:
+The text files themselves are simple, comma delimited text files. They should be a power of two in order for the grid to be square (currently `32x16`). Each line of the file represents a row of the grid. Each cell is represented by a single character. The following characters are supported:
 
-* 'E' - Empty cell
-* 'C' - Debug cube
-* 'S' - Debug sphere
-* 'X' - Maze exit
-* 'D' - Dirt
-* 'R' - Rock
+* `E` - Empty cell
+* `C` - Debug cube
+* `S` - Debug sphere
+* `X` - Maze exit
+* `D` - Dirt
+* `R` - Rock
 
 An example level looks like:
 
