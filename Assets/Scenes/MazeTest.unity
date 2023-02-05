@@ -408,5 +408,7 @@ MonoBehaviour:
     type: 3}
   dirtPrefab: {fileID: 6337019299987878559, guid: 62a27937affc16a40813b48946451185,
     type: 3}
+  rockPrefab: {fileID: 8015254507581289834, guid: e6ee314bf36a59b429a5eaf1047b894b,
+    type: 3}
   gridWidth: 32
   gridHeight: 16
