@@ -19,10 +19,6 @@ public class GridGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        // NOTE: if we want to make variable grid sizes this will need to be changed
-        char[,] tileMap = new char[gridWidth, gridHeight];
-        _grid = new Grid(gridWidth, gridHeight);
-
         // Grab the main camera's transform so we can
         // position it relative to the grid
         _cameraTransform = Camera.main.transform;
@@ -34,6 +30,13 @@ public class GridGenerator : MonoBehaviour
         // representing the tilemap
         string[] rows = File.ReadAllLines(Path.Combine(Application.streamingAssetsPath, $"Levels//Level{currentStage}.txt"));
 
+        // Niavely sample the first row to determine the grid width
+        gridWidth = rows[0].Split(',').Length;
+        gridHeight = rows.Length;
+
+        char[,] tileMap = new char[gridWidth, gridHeight];
+        _grid = new Grid(gridWidth, gridHeight);
+
         // The coordinates in the file are read from Y=height to Y=0 and X=0 to X=width
         // The grid is rendered from Y=0 to Y=height and X=0 to X=width
         // So we need to reverse the Y axis
@@ -41,6 +44,12 @@ public class GridGenerator : MonoBehaviour
         {
             // Split the row into columns
             string[] columns = rows[i].Split(',');
+
+            if (columns.Length != gridWidth)
+            {
+                Debug.LogError($"Level {currentStage} is not a valid level. Row {i} has {columns.Length} columns, but the level is {gridWidth} columns wide.");
+                return;
+            }
 
             // Loop through the columns
             for (int j = 0; j < columns.Length; j++)
