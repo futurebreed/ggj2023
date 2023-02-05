@@ -12,9 +12,6 @@ public class rootmanager : MonoBehaviour
     [SerializeField]
     public GameObject largeRoot;
 
-    [SerializeField]
-    InputDragBehavior input;
-
     public int rootDepth;
     public Vector3 rootPosition;
     public HashSet<Tuple<int,int>> newroots = new HashSet<Tuple<int, int>>();
@@ -33,12 +30,12 @@ public class rootmanager : MonoBehaviour
     void Update()
     {
         // Only process root growth if the mouse is actually dragging
-        if ((input.inputState.state != InputMovementState.None) && (input.inputState.state != InputMovementState.Moving))
+        if ((InputDragBehavior.inputState.state != InputMovementState.None) && (InputDragBehavior.inputState.state != InputMovementState.Moving))
         {
             waitCounter--;
             if (waitCounter == 0)
             {
-                Tuple<int, int> positionOnGrid = input.inputState.positionToGridCellSpace(GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gameObject);
+                Tuple<int, int> positionOnGrid = InputDragBehavior.inputState.positionToGridCellSpace(GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gameObject);
 
                 int gridX = positionOnGrid.Item1; // Cell index
                 int gridY = positionOnGrid.Item2; // Cell index
@@ -50,11 +47,11 @@ public class rootmanager : MonoBehaviour
 
                 Debug.Log($"Dragging on Grid position: ({gridX}, {gridY})");
 
-                if ((input.inputState.position.x < rootPosition.x) && (input.inputState.position.x >= 0))
+                if ((InputDragBehavior.inputState.position.x < rootPosition.x) && (InputDragBehavior.inputState.position.x >= 0))
                 {
                     rootPosition += Vector3.left;
                 }
-                else if (input.inputState.position.x < GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth)
+                else if (InputDragBehavior.inputState.position.x < GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth)
                 {
                     rootPosition += Vector3.right;
                 }

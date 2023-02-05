@@ -14,13 +14,18 @@ public enum InputMovementState
 
 public class InputDragBehavior : MonoBehaviour
 {
-    public InputState inputState = new InputState();
+    public static InputState inputState = new InputState();
 
     [SerializeField]
-    public float MaxMagnitudeForLightDrag = 15.0f; // Don't forget this gets overridden in the editor so if you tweak these values here, they may not reflect that when you test
+    public static float MaxMagnitudeForLightDrag = 15.0f; // Don't forget this gets overridden in the editor so if you tweak these values here, they may not reflect that when you test
 
     [SerializeField]
-    public float MaxMagnitudeForMediumDrag = 20.0f; // Don't forget this gets overridden in the editor so if you tweak these values here, they may not reflect that when you test
+    public static float MaxMagnitudeForMediumDrag = 20.0f; // Don't forget this gets overridden in the editor so if you tweak these values here, they may not reflect that when you test
+
+    private void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     private void Update()
     {
@@ -42,7 +47,7 @@ public class InputDragBehavior : MonoBehaviour
         // TODO if we ever want to support other input devices like keyboard, controller, etc.
     }
 
-    private bool updateTouchState()
+    private static bool updateTouchState()
     {
         bool hasAnyTouchInputUpdates = false;
 
@@ -94,7 +99,7 @@ public class InputDragBehavior : MonoBehaviour
         return hasAnyTouchInputUpdates;
     }
 
-    private bool updateMouseState()
+    private static bool updateMouseState()
     {
         bool hasAnyMouseInputUpdates = false;
 
@@ -174,7 +179,7 @@ public class InputDragBehavior : MonoBehaviour
         return hasAnyMouseInputUpdates;
     }
 
-    private void updateMouseMovementState(bool isDragging)
+    private static void updateMouseMovementState(bool isDragging)
     {
         Vector3 mousePosOnScreen = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.0f);
         Vector3 newVelocity = (mousePosOnScreen - inputState.position) / Time.deltaTime;
@@ -206,7 +211,7 @@ public class InputDragBehavior : MonoBehaviour
         }
     }
 
-    private void resetMouseDownState()
+    private static void resetMouseDownState()
     {
         inputState.state = InputMovementState.None;
         inputState.acceleration = Vector3.zero;
@@ -215,7 +220,7 @@ public class InputDragBehavior : MonoBehaviour
         inputState.mouseDown = false;
     }
 
-    private void updateDragStrength()
+    private static void updateDragStrength()
     {
         float sqrtMagnitude = Mathf.Sqrt(inputState.acceleration.magnitude);
         if (sqrtMagnitude <= MaxMagnitudeForLightDrag)

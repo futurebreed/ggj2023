@@ -134,7 +134,7 @@ PrefabInstance:
         type: 3}
       propertyPath: input
       value: 
-      objectReference: {fileID: 345373254}
+      objectReference: {fileID: 0}
     - target: {fileID: -5496982982007733159, guid: 5d6c8656ae920d3409f096c698d8968f,
         type: 3}
       propertyPath: latency
@@ -234,18 +234,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d6c8656ae920d3409f096c698d8968f, type: 3}
---- !u!114 &345373254 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7295522361861040020, guid: 54ce93c14bcea724f967691c6b7c6db4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1753460743}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30434f25630d28745afed5abbb6e0097, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &444994940 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5580444054930162737, guid: 1903588e149ac2e4f9dc50718f677ae9,
