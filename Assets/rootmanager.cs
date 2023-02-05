@@ -12,6 +12,8 @@ public class rootmanager : MonoBehaviour
     [SerializeField]
     public GameObject largeRoot;
 
+    public SoundHandler soundHandler;
+
     public int rootDepth;
     public Vector3 rootPosition;
     public HashSet<Vector3> newroots = new HashSet<Vector3>();
@@ -25,6 +27,7 @@ public class rootmanager : MonoBehaviour
         rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight, -1);
         this.transform.position = rootPosition;
         waitCounter = latency;
+        soundHandler = (SoundHandler)FindObjectOfType(typeof(SoundHandler));
     }
 
     // Update is called once per frame
@@ -37,6 +40,7 @@ public class rootmanager : MonoBehaviour
             if (waitCounter == 0)
             {
                 Tuple<int, int> positionOnGrid = InputDragBehavior.inputState.positionToGridCellSpace(GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gameObject);
+                
 
                 int gridX = positionOnGrid.Item1; // Cell index
                 int gridY = positionOnGrid.Item2; // Cell index
@@ -47,6 +51,7 @@ public class rootmanager : MonoBehaviour
                 }
 
                 Debug.Log($"Dragging on Grid position: ({gridX}, {gridY})");
+                soundHandler.Growth();
 
                 Vector3 cursorPosition = new Vector3(gridX, gridY, -1);
                 if (gridX < rootPosition.x + 2 && gridX > rootPosition.x - 2 && gridY < rootPosition.y + 2 && gridY > rootPosition.y - 2)
@@ -78,7 +83,10 @@ public class rootmanager : MonoBehaviour
                 
                 waitCounter = latency;
             }
+            soundHandler.StopGrowth();
         }
+
+        
 
         
         /*int xloc = (int)input.inputState.position.x;
