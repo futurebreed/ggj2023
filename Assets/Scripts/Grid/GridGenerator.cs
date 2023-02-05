@@ -12,12 +12,11 @@ public class GridGenerator : MonoBehaviour
     public GridCell cubeCellPrefab, sphereCellPrefab;
 
     // The size of the grid
-    public int gridX = 10;
-    public int gridY = 10;
+    public int gridWidth = 32;
+    public int gridHeight = 16;
 
-    // todo: this will be a collection of tile scriptable objects
-    private Dictionary<Vector2, GridCell> gridState = new Dictionary<Vector2, GridCell>();
-
+    // TODO: turn this into an enum? idfk
+    private char[,] _tileMap;
     private Transform _cameraTransform;
 
     // Start is called before the first frame update
@@ -26,7 +25,13 @@ public class GridGenerator : MonoBehaviour
         // Grab the main camera's transform so we can
         // position it relative to the grid
         _cameraTransform = Camera.main.transform;
-        
+
+        // lets parse the level data from the resources directory
+        // and generate the grid based on that data
+        TextAsset levelText = Resources.Load<TextAsset>("Levels/ShrimpleLevel");
+
+        // turn the text into a multidimensional array
+
         // Generate the grid
         GenerateGrid();
     }
@@ -36,10 +41,10 @@ public class GridGenerator : MonoBehaviour
     {
         int i = 0;
         // Loop through the grid width
-        for (int x = 0; x < gridX; x++)
+        for (int gridX = 0; gridX < gridWidth; gridX++)
         {
             // Loop through the grid height
-            for (int z = 0; z < gridY; z++)
+            for (int gridY = 0; gridY < gridHeight; gridY++)
             {
                 // TODO: Sample the Level's tilemap to see if there is a cell at this position
                 // And if so, what type of cell it is
@@ -47,17 +52,12 @@ public class GridGenerator : MonoBehaviour
                 GridCell prefabToSpawn = i % 3 == 0 ? sphereCellPrefab : cubeCellPrefab;
                 i++; // hack
 
-                Debug.Log($"Spawning {prefabToSpawn.name} at {x}, {z}");
-
                 // Create a new grid prefab
                 GridCell newGridPrefab = Instantiate(prefabToSpawn);
 
                 // In root grid, z-axis == y-axis
                 // Set the position of the new grid prefab
-                newGridPrefab.transform.position = new Vector3(x, 0, z);
-
-                // track the grid state in a simple lookup table
-                gridState[new Vector2(x, z)] = newGridPrefab;
+                newGridPrefab.transform.position = new Vector3(gridX, 0, gridY);
 
                 // Set the parent of the new grid prefab
                 newGridPrefab.transform.parent = this.transform;
@@ -65,7 +65,7 @@ public class GridGenerator : MonoBehaviour
         }
 
         // Position the camera in the center of the grid
-        _cameraTransform.transform.position = new Vector3((float)gridX / 2, _cameraTransform.position.y, (float)gridY / 2);
+        _cameraTransform.transform.position = new Vector3((float)gridWidth / 2, _cameraTransform.position.y, (float)gridHeight / 2);
     }
 
 }
