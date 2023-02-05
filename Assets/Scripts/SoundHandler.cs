@@ -110,7 +110,7 @@ public class SoundHandler : MonoBehaviour
     public void StopGrowth() {
         FMOD.Studio.PLAYBACK_STATE playbackState;
         rootGrowth.getPlaybackState(out playbackState);
-        if(playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING){
+        if(playbackState == FMOD.Studio.PLAYBACK_STATE.PLAYING){
             rootGrowth.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
     }

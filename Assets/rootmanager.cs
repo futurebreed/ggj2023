@@ -15,19 +15,22 @@ public class rootmanager : MonoBehaviour
     [SerializeField]
     public SoundHandler soundHandler;
 
+    [SerializeField]
+    public GridGenerator gridGenerator;
+
     public int rootDepth;
     public Vector3 rootPosition;
     public HashSet<Vector3> newroots = new HashSet<Vector3>();
     public int latency;
-    private int waitCounter;
+
+    private bool playingGrowthSound = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        float center = GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth / 2.0f;
-        rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight, -1);
+        GridCell startCell = gridGenerator.getStart();
+        rootPosition = new Vector3(startCell.GridX, startCell.GridY, -1);
         this.transform.position = rootPosition;
-        waitCounter = latency;
     }
 
     // Update is called once per frame
@@ -36,54 +39,67 @@ public class rootmanager : MonoBehaviour
         // Only process root growth if the mouse is actually dragging
         if ((InputDragBehavior.inputState.state != InputMovementState.None) && (InputDragBehavior.inputState.state != InputMovementState.Moving))
         {
-            waitCounter--;
-            if (waitCounter == 0)
+            Tuple<int, int> positionOnGrid = InputDragBehavior.inputState.positionToGridCellSpace(GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gameObject);
+
+            int gridX = positionOnGrid.Item1; // Cell index
+            int gridY = positionOnGrid.Item2; // Cell index
+            if (gridX == -1 || gridY == -1)
             {
-                Tuple<int, int> positionOnGrid = InputDragBehavior.inputState.positionToGridCellSpace(GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gameObject);
-                
+                // Click was not on grid
+                return;
+            }
 
-                int gridX = positionOnGrid.Item1; // Cell index
-                int gridY = positionOnGrid.Item2; // Cell index
-                if (gridX == -1 || gridY == -1)
+            Debug.Log($"Dragging on Grid position: ({gridX}, {gridY})");
+
+            Vector3 cursorPosition = new Vector3(gridX, gridY, -1);
+            if (gridX < rootPosition.x + 2 && gridX > rootPosition.x - 2 && gridY < rootPosition.y + 2 && gridY > rootPosition.y - 2)
+            {
+                if (!newroots.Contains(cursorPosition))
                 {
-                    // Click was not on grid
-                    return;
-                }
-
-                Debug.Log($"Dragging on Grid position: ({gridX}, {gridY})");
-                soundHandler.Growth();
-
-                Vector3 cursorPosition = new Vector3(gridX, gridY, -1);
-                if (gridX < rootPosition.x + 2 && gridX > rootPosition.x - 2 && gridY < rootPosition.y + 2 && gridY > rootPosition.y - 2)
-                {
-                    rootPosition = cursorPosition;
-                    if (!newroots.Contains(cursorPosition))
+                    if (InputDragBehavior.inputState.state != InputMovementState.DragStationary)
                     {
-                        if (newroots.Count < rootDepth)
+                        rootPosition = cursorPosition;
+
+                        if (!playingGrowthSound)
                         {
-                            GameObject newRoot = Instantiate(smallRoot, transform);
-                            newRoot.transform.position = cursorPosition;
-                            newroots.Add(cursorPosition);
-                        }
-                        else
-                        {
-                            for (int i = 0; i < transform.childCount; i++)
-                            {
-                                transform.GetChild(i).localScale *= 2;
-                            }
-                            GameObject newRoot = Instantiate(smallRoot, transform);
-                            newRoot.transform.position = cursorPosition;
-                            newroots.Add(cursorPosition);
-                            float center = GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth / 2.0f;
-                            rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight, -1);
-                            newroots = new HashSet<Vector3>();
+                            soundHandler.Growth();
+                            playingGrowthSound = true;
                         }
                     }
+                    else
+                    {
+                        return;
+                    }
+
+                    if (newroots.Count < rootDepth)
+                    {
+                        GameObject newRoot = Instantiate(smallRoot, transform);
+                        newRoot.transform.position = cursorPosition;
+                        newroots.Add(cursorPosition);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < transform.childCount; i++)
+                        {
+                            transform.GetChild(i).localScale *= 2;
+                        }
+                        GameObject newRoot = Instantiate(smallRoot, transform);
+                        newRoot.transform.position = cursorPosition;
+                        newroots.Add(cursorPosition);
+                        float center = GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth / 2.0f;
+                        rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight, -1);
+                        newroots = new HashSet<Vector3>();
+                    }
                 }
-                
-                waitCounter = latency;
             }
-            soundHandler.StopGrowth();
+
+            if (InputDragBehavior.inputState.state != InputMovementState.DragLight &&
+                InputDragBehavior.inputState.state != InputMovementState.DragMedium &&
+                InputDragBehavior.inputState.state != InputMovementState.DragStrong &&
+                playingGrowthSound)
+            {
+                soundHandler.StopGrowth();
+            }
         }
 
         /*int xloc = (int)input.inputState.position.x;

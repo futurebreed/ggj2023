@@ -16,6 +16,8 @@ public class GridGenerator : MonoBehaviour
     private Grid _grid;
     public Grid Grid => _grid;
 
+    private GridCell _seedCell;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -125,6 +127,16 @@ public class GridGenerator : MonoBehaviour
 
         // Set the grid cell's position in the grid
         _grid.SetCell(gridX, gridY, newGridPrefab);
+
+        if (cellType == 'S')
+        {
+            _seedCell = _grid.GetCell(gridX, gridY);
+        }
+    }
+
+    public GridCell getStart()
+    {
+        return _seedCell;
     }
 
 }
