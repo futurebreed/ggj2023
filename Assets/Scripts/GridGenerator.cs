@@ -30,8 +30,8 @@ public class GridGenerator : MonoBehaviour
         // position it relative to the grid
         _cameraTransform = Camera.main.transform;
 
-        // for testing rn
-        int currentStage = 2; // SceneNavigationController.ActiveStage;
+        // Pull the current level from the scene navigation controller singleton
+        int currentStage = SceneNavigationController.ActiveStage;
         
         // The file level format is a 32x16 comma separated list of characters
         // representing the tilemap
