@@ -23,18 +23,19 @@ public class GridGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // NOTE: if we want to make variable grid sizes this will need to be changed
         _tileMap = new char[gridWidth, gridHeight];
 
         // Grab the main camera's transform so we can
         // position it relative to the grid
         _cameraTransform = Camera.main.transform;
 
-        // lets parse the level data from the resources directory
-        // and generate the grid based on that data
-
+        // for testing rn
+        int currentStage = 2; // SceneNavigationController.ActiveStage;
+        
         // The file level format is a 32x16 comma separated list of characters
         // representing the tilemap
-        string[] rows = File.ReadAllLines(Path.Combine(Application.streamingAssetsPath, "Levels//ShrimpleMaze.txt"));
+        string[] rows = File.ReadAllLines(Path.Combine(Application.streamingAssetsPath, $"Levels//Level{currentStage}.txt"));
 
         // The coordinates in the file are read from Y=height to Y=0 and X=0 to X=width
         // The grid is rendered from Y=0 to Y=height and X=0 to X=width
