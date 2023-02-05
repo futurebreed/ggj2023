@@ -12,6 +12,7 @@ public class rootmanager : MonoBehaviour
     [SerializeField]
     public GameObject largeRoot;
 
+    [SerializeField]
     public SoundHandler soundHandler;
 
     public int rootDepth;
@@ -27,7 +28,6 @@ public class rootmanager : MonoBehaviour
         rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight, -1);
         this.transform.position = rootPosition;
         waitCounter = latency;
-        soundHandler = (SoundHandler)FindObjectOfType(typeof(SoundHandler));
     }
 
     // Update is called once per frame
@@ -86,9 +86,6 @@ public class rootmanager : MonoBehaviour
             soundHandler.StopGrowth();
         }
 
-        
-
-        
         /*int xloc = (int)input.inputState.position.x;
         int yloc = (int)input.inputState.position.y;
         Tuple<int, int> mosPos = new(xloc, yloc);
