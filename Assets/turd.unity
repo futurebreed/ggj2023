@@ -474,6 +474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732690039}
   - component: {fileID: 1732690038}
+  - component: {fileID: 1732690040}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -531,6 +532,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1732690040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732690037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aa644ee5fd78c43a193af7b6654c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockMeshes: []
+  rockMaterial: {fileID: 0}
 --- !u!1 &1803854077
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,9 +13,15 @@ public class SoundHandler : MonoBehaviour
     public FMODUnity.EventReference HomeSweetHome;
     FMOD.Studio.EventInstance homeSweetHome;
 
+    private RockCell rockCell;
+
 
     public string rootState = null;
     public string gridState = null;
+
+    void Awake () {
+        rockCell = GetComponent<RockCell>();
+    }
 
     void Start()
     {
@@ -28,6 +34,9 @@ public class SoundHandler : MonoBehaviour
 
         waterCollect = FMODUnity.RuntimeManager.CreateInstance(WaterCollection);
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(waterCollect, Camera.main.transform);
+
+        rockCollide = FMODUnity.RuntimeManager.CreateInstance(RockCollection);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(rockCollide, Camera.main.transform);
     }
 
 
@@ -41,6 +50,14 @@ public class SoundHandler : MonoBehaviour
             }
         } else {
             rootGrowth.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+
+        if(rockCell.IsColliding()){
+            FMOD.Studio.PLAYBACK_STATE playbackState;
+            rockCollide.getPlaybackState(out playbackState);
+            if(playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING){
+                rockCollide.start();
+            }    
         }
 
         if(gridState == "water") {
