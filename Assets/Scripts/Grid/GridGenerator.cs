@@ -34,7 +34,6 @@ public class GridGenerator : MonoBehaviour
 
         // The file level format is a 32x16 comma separated list of characters
         // representing the tilemap
-        // string[] rows = levelText.text.Split('\n');
         string[] rows = File.ReadAllLines(Path.Combine(Application.streamingAssetsPath, "Levels//ShrimpleMaze.txt"));
 
         // Loop through the rows
@@ -64,9 +63,7 @@ public class GridGenerator : MonoBehaviour
             // Loop through the grid height
             for (int gridY = 0; gridY < gridHeight; gridY++)
             {
-                // TODO: Sample the Level's tilemap to see if there is a cell at this position
-                // And if so, what type of cell it is
-
+                // Sample the cell-type from the level's tile map
                 char cellType = _tileMap[gridX, gridY];
                 GridCell prefabToSpawn = emptyCellPrefab;
 
@@ -88,7 +85,7 @@ public class GridGenerator : MonoBehaviour
 
                 // In root grid, z-axis == y-axis
                 // Set the position of the new grid prefab
-                newGridPrefab.transform.position = new Vector3(gridX, 0, gridY);
+                newGridPrefab.transform.position = new Vector3(gridX, gridY, 0);
 
                 // Set the parent of the new grid prefab
                 newGridPrefab.transform.parent = this.transform;
@@ -96,7 +93,7 @@ public class GridGenerator : MonoBehaviour
         }
 
         // Position the camera in the center of the grid
-        _cameraTransform.transform.position = new Vector3((float)gridWidth / 2, _cameraTransform.position.y, (float)gridHeight / 2);
+        _cameraTransform.transform.position = new Vector3((float)gridWidth / 2, (float)gridHeight / 2, _cameraTransform.position.z);
     }
 
 }
