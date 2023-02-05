@@ -10,6 +10,9 @@ public class DirtCell : GridCell
     // Start is called before the first frame update
     void Start()
     {
+        // set a tag to help filter collisions
+        this.gameObject.tag = "Dirt";
+
         // get a reference to the mesh renderer
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
 

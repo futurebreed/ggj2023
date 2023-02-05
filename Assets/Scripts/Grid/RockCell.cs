@@ -5,6 +5,9 @@ using UnityEngine;
 public class RockCell : GridCell
 {
 
+    private bool _isColliding = false;
+    public bool IsColliding => _isColliding;
+
     public Mesh[] rockMeshes;
 
     public Material rockMaterial;
@@ -30,9 +33,21 @@ public class RockCell : GridCell
         transform.Rotate(new Vector3(90f, 0f));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        // note: this can probably be inverted to only be true for root collisions
+        if (collision.gameObject.tag != "Dirt")
+        {
+            _isColliding = true;
+        }
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag != "Dirt")
+        {
+            _isColliding = false;
+        }
+    }
+
 }
