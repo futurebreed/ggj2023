@@ -230,8 +230,6 @@ public class InputDragBehavior : MonoBehaviour
         {
             inputState.state = InputMovementState.DragStrong;
         }
-
-        Debug.Log($"State: {inputState.state} Val: {sqrtMagnitude}");
     }
 }
 
@@ -244,4 +242,20 @@ public class InputState
     public InputMovementState state { get; set; } = InputMovementState.None;
 
     public bool mouseDown { get; set; } = false;
+
+    public Tuple<int, int> positionToGridCellSpace(GameObject obj)
+    {
+        var ray = Camera.main.ScreenPointToRay(position);
+        // ray to object intersection
+
+        if (Physics.Raycast(ray, out RaycastHit rayHitInfo))
+        {
+            var hitObject = rayHitInfo.collider.gameObject;
+            var gridX = hitObject.GetComponent<GridCell>().GridX;
+            var gridY = hitObject.GetComponent<GridCell>().GridY;
+            return new(gridX, gridY);
+        }
+
+        return new(-1, -1); // didn't find any entry
+    }
 }

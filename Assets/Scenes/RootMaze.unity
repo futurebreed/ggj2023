@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -132,6 +132,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5496982982007733159, guid: 5d6c8656ae920d3409f096c698d8968f,
         type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 345373254}
+    - target: {fileID: -5496982982007733159, guid: 5d6c8656ae920d3409f096c698d8968f,
+        type: 3}
       propertyPath: latency
       value: 30
       objectReference: {fileID: 0}
@@ -152,6 +157,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5236409517539614206, guid: ac2b85bf74a5c5145aa33bc49ad4674f,
         type: 3}
+    - target: {fileID: -5496982982007733159, guid: 5d6c8656ae920d3409f096c698d8968f,
+        type: 3}
+      propertyPath: gridGenerator
+      value: 
+      objectReference: {fileID: 444994940}
     - target: {fileID: 3470451580401450432, guid: 5d6c8656ae920d3409f096c698d8968f,
         type: 3}
       propertyPath: m_RootOrder
@@ -224,6 +234,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d6c8656ae920d3409f096c698d8968f, type: 3}
+--- !u!114 &345373254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7295522361861040020, guid: 54ce93c14bcea724f967691c6b7c6db4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1753460743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30434f25630d28745afed5abbb6e0097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &444994940 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5580444054930162737, guid: 1903588e149ac2e4f9dc50718f677ae9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1406445135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081b03d0045f5a640b5b68216b630ea5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1406445135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -533,6 +567,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7295522361861040020, guid: 54ce93c14bcea724f967691c6b7c6db4,
+        type: 3}
+      propertyPath: MaxMagnitudeForLightDrag
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295522361861040020, guid: 54ce93c14bcea724f967691c6b7c6db4,
+        type: 3}
+      propertyPath: MaxMagnitudeForMediumDrag
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7295522361861040021, guid: 54ce93c14bcea724f967691c6b7c6db4,
         type: 3}
       propertyPath: m_RootOrder

@@ -6,8 +6,15 @@ using UnityEngine;
 
 public class rootmanager : MonoBehaviour
 {
+    [SerializeField]
     public GameObject smallRoot;
+
+    [SerializeField]
     public GameObject largeRoot;
+
+    [SerializeField]
+    InputDragBehavior input;
+
     public int rootDepth;
     public Vector3 rootPosition;
     public HashSet<Tuple<int,int>> newroots = new HashSet<Tuple<int, int>>();
@@ -17,32 +24,51 @@ public class rootmanager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float center = GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth/2.0f;
-        rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight,-1);
+        float center = GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth / 2.0f;
+        rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight, -1);
         waitCounter = latency;
     }
 
     // Update is called once per frame
     void Update()
     {
-        waitCounter--;
-        if (waitCounter == 0)
+        // Only process root growth if the mouse is actually dragging
+        if ((input.inputState.state != InputMovementState.None) && (input.inputState.state != InputMovementState.Moving))
         {
-            if (Input.mousePosition.x < rootPosition.x&& Input.mousePosition.x>=0)
+            waitCounter--;
+            if (waitCounter == 0)
             {
-                rootPosition += Vector3.left;
+                Tuple<int, int> positionOnGrid = input.inputState.positionToGridCellSpace(GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gameObject);
+
+                int gridX = positionOnGrid.Item1; // Cell index
+                int gridY = positionOnGrid.Item2; // Cell index
+                if (gridX == -1 || gridY == -1)
+                {
+                    // Click was not on grid
+                    return;
+                }
+
+                Debug.Log($"Dragging on Grid position: ({gridX}, {gridY})");
+
+                if ((input.inputState.position.x < rootPosition.x) && (input.inputState.position.x >= 0))
+                {
+                    rootPosition += Vector3.left;
+                }
+                else if (input.inputState.position.x < GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth)
+                {
+                    rootPosition += Vector3.right;
+                }
+
+                rootPosition += Vector3.down;
+                GameObject newRoot = Instantiate(smallRoot, this.transform);
+                newRoot.transform.position = rootPosition;
+                waitCounter = latency;
             }
-            else if (Input.mousePosition.x<GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth)
-            {
-                rootPosition += Vector3.right;
-            }
-            rootPosition += Vector3.down;
-            GameObject newRoot = Instantiate(smallRoot, this.transform);
-            newRoot.transform.position = rootPosition;
-            waitCounter = latency;
         }
-        /*int xloc = (int)Input.mousePosition.x;
-        int yloc = (int)Input.mousePosition.y;
+
+        
+        /*int xloc = (int)input.inputState.position.x;
+        int yloc = (int)input.inputState.position.y;
         Tuple<int, int> mosPos = new(xloc, yloc);
         //if (xloc < rootPosition.x + 1 && xloc > rootPosition.x - 1 && yloc < rootPosition.y + 1 && yloc > rootPosition.y - 1)
         if (true)

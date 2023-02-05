@@ -20,7 +20,7 @@ public class DirtCell : GridCell
         int dirtLayersCount = dirtMaterials.Length;
 
         // calculate this cell's % of the grid height
-        float gridHeightPercent = (float)_gridY / (float)_gridHeight;
+        float gridHeightPercent = (float)GridY / (float)_gridHeight;
 
         // compute the index of the dirt layer relative to the grid height
         // this will be a value between 0 and dirtLayersCount - 1
