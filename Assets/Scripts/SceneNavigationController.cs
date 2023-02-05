@@ -28,26 +28,19 @@ public class SceneNavigationController : MonoBehaviour
             ActiveSceneMapping = SceneMapping.MainMenuScene;
             ActiveStage = 0;
 
-            Debug.Log($"Loading {ActiveSceneMapping} Stage {ActiveStage}");
-
-            //SceneManager.LoadScene((int)SceneMapping.MainMenuScene, LoadSceneMode.Single);
+            SceneManager.LoadScene((int)SceneMapping.MainMenuScene, LoadSceneMode.Single);
         }
     }
 
     public static void NavigateToLevel(int stage)
     {
-        if (ActiveSceneMapping != SceneMapping.MainMenuScene)
-        {
-            // TODO if stage number is same as current, it's a restart of the current level
+        // TODO if stage number is same as current, it's a restart of the current level
 
-            // TODO stop/blend music/sounds if going
+        // TODO stop/blend music/sounds if going
 
-            ActiveSceneMapping = SceneMapping.GameScene;
-            ActiveStage = stage;
+        ActiveSceneMapping = SceneMapping.GameScene;
+        ActiveStage = stage;
 
-            Debug.Log($"Loading {ActiveSceneMapping} Stage {ActiveStage}");
-
-            //SceneManager.LoadScene((int)SceneMapping.GameScene, LoadSceneMode.Single);
-        }
+        SceneManager.LoadScene((int)SceneMapping.GameScene, LoadSceneMode.Single);
     }
 }
