@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneNavigationController : MonoBehaviour
 {
+    [SerializeField]
+    SoundHandler soundHandler; // I wanna play sounds and you can't stop me
+
     enum SceneMapping : int
     {
         MainMenuScene = 0,
@@ -42,5 +45,11 @@ public class SceneNavigationController : MonoBehaviour
         ActiveStage = stage;
 
         SceneManager.LoadScene((int)SceneMapping.GameScene, LoadSceneMode.Single);
+    }
+
+    public static void PlayEpicDoot()
+    {
+        // Coming soon
+        // use soundHandler
     }
 }

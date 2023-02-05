@@ -13,12 +13,13 @@ public class SoundHandler : MonoBehaviour
     public FMODUnity.EventReference HomeSweetHome;
     FMOD.Studio.EventInstance homeSweetHome;
 
-
     public string rootState = null;
     public string gridState = null;
 
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
+
         homeSweetHome = FMODUnity.RuntimeManager.CreateInstance(HomeSweetHome);
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(homeSweetHome, Camera.main.transform);
         homeSweetHome.start();
