@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{bee587d3-cee2-42c5-8096-f7058243c4ee}">
+		<property name="assetPath">
+			<value>AMB_Forest_Loop.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>25</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7d423bf8-c8b3-4ec8-b65d-9a0e67b452f4}</destination>
+		</relationship>
+	</object>
+</objects>
