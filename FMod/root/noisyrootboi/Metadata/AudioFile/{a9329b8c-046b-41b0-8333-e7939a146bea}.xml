@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a9329b8c-046b-41b0-8333-e7939a146bea}">
+		<property name="assetPath">
+			<value>SFX_Designed_Plug_Rich.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3260317460317461</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7d423bf8-c8b3-4ec8-b65d-9a0e67b452f4}</destination>
+		</relationship>
+	</object>
+</objects>

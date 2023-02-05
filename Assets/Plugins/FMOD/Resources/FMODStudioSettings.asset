@@ -359,8 +359,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../FMod/noisyrootboi/noisyrootboi.fspro
-  sourceBankPath: ../../FMod/noisyrootboi/Build
+  sourceProjectPath: FMod/root/noisyrootboi/noisyrootboi.fspro
+  sourceBankPath: FMod/root/noisyrootboi/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
