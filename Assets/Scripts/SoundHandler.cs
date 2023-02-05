@@ -9,7 +9,7 @@ public class SoundHandler : MonoBehaviour
     {
         HoverMenu,
         ConfirmMenu,
-        rockCollide,
+        RockCollision,
         waterCollect,
         rootGrowth,
         DootDoot,
@@ -17,33 +17,25 @@ public class SoundHandler : MonoBehaviour
     }
 
 //instances to be able to track
-    public FMODUnity.EventReference RootGrowth;
-    FMOD.Studio.EventInstance rootGrowth;
-
     public FMODUnity.EventReference WaterCollection;
     FMOD.Studio.EventInstance waterCollect;
 
     public FMODUnity.EventReference HomeSweetHome;
     FMOD.Studio.EventInstance homeSweetHome;
 
-    public FMODUnity.EventReference RockCollision;
-    FMOD.Studio.EventInstance rockCollide;
+    public FMODUnity.EventReference RootGrowth;
+    FMOD.Studio.EventInstance rootGrowth;
 
-    // private RockCell rockCell;
+    
 
 //one shots
     public FMODUnity.EventReference HoverMenu;
     public FMODUnity.EventReference ConfirmMenu;
     public FMODUnity.EventReference DootDoot;
     public FMODUnity.EventReference Exit;
+    public FMODUnity.EventReference RockCollision;
 
 
-    public string rootState = null;
-    public string gridState = null;
-
-    // void Awake () {
-    //     rockCell = GetComponent<RockCell>(); //i dont understand getcomponent stuff at all yet
-    // }
 
     void Start()
     {
@@ -58,10 +50,6 @@ public class SoundHandler : MonoBehaviour
 
         waterCollect = FMODUnity.RuntimeManager.CreateInstance(WaterCollection);
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(waterCollect, Camera.main.transform);
-
-        //place holder
-        rockCollide = FMODUnity.RuntimeManager.CreateInstance(RockCollision);
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(rockCollide, Camera.main.transform);
     }
 
     public void PlayJukebox(JukeboxSong jukeboxSong) {
@@ -88,8 +76,8 @@ public class SoundHandler : MonoBehaviour
                 FMODUnity.RuntimeManager.PlayOneShot(DootDoot, Camera.main.transform.position);
                 break;
             }
-            case JukeboxSong.rockCollide: {
-                rockCollide.start();
+            case JukeboxSong.RockCollision: {
+                FMODUnity.RuntimeManager.PlayOneShot(RockCollision, Camera.main.transform.position);
                 break;
             }
             case JukeboxSong.waterCollect: {
@@ -111,33 +99,24 @@ public class SoundHandler : MonoBehaviour
         }
     }
 
+    public void Growth() {
+        FMOD.Studio.PLAYBACK_STATE playbackState;
+        rootGrowth.getPlaybackState(out playbackState);
+        if(playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING){
+            rootGrowth.start();
+        }
+    }
+
+    public void StopGrowth() {
+        FMOD.Studio.PLAYBACK_STATE playbackState;
+        rootGrowth.getPlaybackState(out playbackState);
+        if(playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING){
+            rootGrowth.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+    }
+
 
     void Update()
     {
-        if(rootState == "stretching"){
-            FMOD.Studio.PLAYBACK_STATE playbackState;
-            rootGrowth.getPlaybackState(out playbackState);
-            if(playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING){
-                rootGrowth.start();
-            }
-        } else {
-            rootGrowth.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        }
-
-        // if(rockCell.IsColliding()){
-        //     FMOD.Studio.PLAYBACK_STATE playbackState;
-        //     rockCollide.getPlaybackState(out playbackState);
-        //     if(playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING){
-        //         rockCollide.start();
-        //     }    
-        // }
-
-        if(gridState == "water") {
-            FMOD.Studio.PLAYBACK_STATE playbackState;
-            waterCollect.getPlaybackState(out playbackState);
-            if(playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING){
-                waterCollect.start();
-            }
-        }
     }
 }
