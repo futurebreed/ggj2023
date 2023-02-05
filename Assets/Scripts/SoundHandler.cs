@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum JukeboxSong
-{
-    HoverMenu,
-    ConfirmMenu,
-    rockCollide,
-    waterCollect,
-    rootGrowth
-}
+
 
 public class SoundHandler : MonoBehaviour
 {
+    public enum JukeboxSong
+    {
+        HoverMenu,
+        ConfirmMenu,
+        rockCollide,
+        waterCollect,
+        rootGrowth
+    }
+
     public FMODUnity.EventReference RootGrowth;
     FMOD.Studio.EventInstance rootGrowth;
 
