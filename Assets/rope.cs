@@ -60,7 +60,7 @@ public class rope : MonoBehaviour
 
     public void Simulate(){
 
-        for(int i=1;i<segmentLength;i++){
+        for(int i = 1; i < segmentLength; i++){
             RopeSegment firstSegment = ropeSegments[i];
             Vector2 velocity = firstSegment.posNow - firstSegment.posOld;
             firstSegment.posOld = firstSegment.posNow;
@@ -69,18 +69,13 @@ public class rope : MonoBehaviour
             ropeSegments[i] = firstSegment;
         }
 
-        for(int i=0;i<50;i++){
+        for (int i = 0; i < 50; i++)
+        {
             Physics();
         }
     }
 
-    public void Physics(){
-        if ((inputBehavior.inputState.state == InputMovementState.None) || (inputBehavior.inputState.state == InputMovementState.Moving))
-        {
-            // In these states, the input is not dragging at all, so we should not animate the rope as a result.
-            return;
-        }
-
+    public void Physics() {
         RopeSegment zero = ropeSegments[0];
         zero.posNow = Camera.main.ScreenToWorldPoint(inputBehavior.inputState.position + new Vector3(0, 0, 4f));
         ropeSegments[0] = zero;
