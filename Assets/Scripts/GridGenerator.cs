@@ -10,7 +10,7 @@ public class GridGenerator : MonoBehaviour
     // using the X and Z axis as the Y anx X coordinates for the grid system respectively
 
     // The prefab to be used for the grid
-    public GridCell emptyCellPrefab, cubeCellPrefab, sphereCellPrefab, dirtPrefab, rockPrefab;
+    public GridCell emptyCellPrefab, cubeCellPrefab, sphereCellPrefab, dirtPrefab, rockPrefab, exitCell;
 
     // The size of the grid
     public int gridWidth = 32;
@@ -98,6 +98,9 @@ public class GridGenerator : MonoBehaviour
                 break;
             case 'R':
                 prefabToSpawn = rockPrefab;
+                break;
+            case 'X':
+                prefabToSpawn = exitCell;
                 break;
         }
 
