@@ -23,8 +23,6 @@ public class rootmanager : MonoBehaviour
     public HashSet<Vector3> newroots = new HashSet<Vector3>();
     public int latency;
 
-    private bool playingGrowthSound = false;
-
     // Start is called before the first frame update
     void Start()
     {
