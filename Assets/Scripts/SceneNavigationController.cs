@@ -55,8 +55,9 @@ public class SceneNavigationController : MonoBehaviour
         soundHandler.PlayJukebox(SoundHandler.JukeboxSong.DootDoot);
     }
 
-    public static void ExitGame()
+    public void ExitGame()
     {
+        soundHandler.PlayJukebox(SoundHandler.JukeboxSong.Exit);
         Application.Quit();
     }
 }

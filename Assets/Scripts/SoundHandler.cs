@@ -12,7 +12,8 @@ public class SoundHandler : MonoBehaviour
         rockCollide,
         waterCollect,
         rootGrowth,
-        DootDoot
+        DootDoot,
+        Exit
     }
 
 //instances to be able to track
@@ -34,6 +35,7 @@ public class SoundHandler : MonoBehaviour
     public FMODUnity.EventReference HoverMenu;
     public FMODUnity.EventReference ConfirmMenu;
     public FMODUnity.EventReference DootDoot;
+    public FMODUnity.EventReference Exit;
 
 
     public string rootState = null;
@@ -73,6 +75,10 @@ public class SoundHandler : MonoBehaviour
             case JukeboxSong.HoverMenu: {
                 FMODUnity.RuntimeManager.PlayOneShot(HoverMenu, Camera.main.transform.position);
                 break;
+            }
+            case JukeboxSong.Exit: {
+                FMODUnity.RuntimeManager.PlayOneShot(Exit, Camera.main.transform.position);
+                return;
             }
             case JukeboxSong.ConfirmMenu: {
                 FMODUnity.RuntimeManager.PlayOneShot(ConfirmMenu, Camera.main.transform.position);

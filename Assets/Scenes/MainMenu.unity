@@ -519,6 +519,13 @@ MonoBehaviour:
       Data3: -301158517
       Data4: 1833605989
     Path: event:/DootDoot
+  Exit:
+    Guid:
+      Data1: -1754798159
+      Data2: 1247426708
+      Data3: 1856372365
+      Data4: 125600778
+    Path: event:/Exit
   rootState: 
   gridState: 
 --- !u!114 &181742640
