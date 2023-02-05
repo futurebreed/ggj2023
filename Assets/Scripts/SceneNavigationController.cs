@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneNavigationController : MonoBehaviour
 {
-    [SerializeField]
-    SoundHandler soundHandler; // I wanna play sounds and you can't stop me
+    //[SerializeField]
+    //SoundHandler soundHandler; // I wanna play sounds and you can't stop me
 
     enum SceneMapping : int
     {

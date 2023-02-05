@@ -1061,8 +1061,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 88260476}
         m_TargetAssemblyTypeName: SceneNavigationController, Assembly-CSharp
-        m_MethodName: NavigateToLevel
-        m_Mode: 3
+        m_MethodName: PlayEpicDoot
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1836,6 +1836,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2228196759129624800, guid: 2188dbb1ff05d224d834663275793ec4,
+        type: 3}
+      propertyPath: soundHandler
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2228196759129624801, guid: 2188dbb1ff05d224d834663275793ec4,
         type: 3}
       propertyPath: m_RootOrder
