@@ -52,4 +52,9 @@ public class SceneNavigationController : MonoBehaviour
         // Coming soon
         // use soundHandler
     }
+
+    public static void ExitGame()
+    {
+        Application.Quit();
+    }
 }
