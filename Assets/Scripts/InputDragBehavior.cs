@@ -16,9 +16,11 @@ public class InputDragBehavior : MonoBehaviour
 {
     public InputState inputState = new InputState();
 
-    [Range(0.0f, 1.0f)] public float MaxMagnitudeForLightDrag = 0.25f;
-    [Range(0.0f, 1.0f)] public float MaxMagnitudeForMediumDrag = 0.50f;
-    [Range(0.0f, 1.0f)] public float MaxMagnitudeForStrongDrag = 1.00f;
+    [SerializeField]
+    public float MaxMagnitudeForLightDrag = 15.0f; // Don't forget this gets overridden in the editor so if you tweak these values here, they may not reflect that when you test
+
+    [SerializeField]
+    public float MaxMagnitudeForMediumDrag = 20.0f; // Don't forget this gets overridden in the editor so if you tweak these values here, they may not reflect that when you test
 
     private void Update()
     {
@@ -215,11 +217,12 @@ public class InputDragBehavior : MonoBehaviour
 
     private void updateDragStrength()
     {
-        if (inputState.acceleration.magnitude <= MaxMagnitudeForLightDrag)
+        float sqrtMagnitude = Mathf.Sqrt(inputState.acceleration.magnitude);
+        if (sqrtMagnitude <= MaxMagnitudeForLightDrag)
         {
             inputState.state = InputMovementState.DragLight;
         }
-        else if (inputState.acceleration.magnitude <= MaxMagnitudeForMediumDrag)
+        else if (sqrtMagnitude <= MaxMagnitudeForMediumDrag)
         {
             inputState.state = InputMovementState.DragMedium;
         }
@@ -227,6 +230,8 @@ public class InputDragBehavior : MonoBehaviour
         {
             inputState.state = InputMovementState.DragStrong;
         }
+
+        Debug.Log($"State: {inputState.state} Val: {sqrtMagnitude}");
     }
 }
 

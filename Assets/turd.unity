@@ -447,9 +447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30434f25630d28745afed5abbb6e0097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxMagnitudeForLightDrag: 0.25
-  MaxMagnitudeForMediumDrag: 0.5
-  MaxMagnitudeForStrongDrag: 1
+  MaxMagnitudeForLightDrag: 15
+  MaxMagnitudeForMediumDrag: 20
 --- !u!4 &1505600067
 Transform:
   m_ObjectHideFlags: 0
