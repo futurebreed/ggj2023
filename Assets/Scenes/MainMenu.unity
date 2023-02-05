@@ -470,13 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6686c079db5866c429b2f0a2afc2e35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RootGrowth:
-    Guid:
-      Data1: 1517919118
-      Data2: 1203918651
-      Data3: 2142398
-      Data4: 454697372
-    Path: event:/RootGrowth
   WaterCollection:
     Guid:
       Data1: -110641067
@@ -491,13 +484,14 @@ MonoBehaviour:
       Data3: -2119967581
       Data4: -745408148
     Path: event:/HomeSweetHome
-  RockCollision:
+  RootGrowth:
     Guid:
-      Data1: 1533574931
-      Data2: 1090653408
-      Data3: -2142741847
-      Data4: -631994494
-    Path: event:/RockCollision
+      Data1: 1517919118
+      Data2: 1203918651
+      Data3: 2142398
+      Data4: 454697372
+    Path: event:/RootGrowth
+  growthPlaying: 0
   HoverMenu:
     Guid:
       Data1: 618196856
@@ -526,8 +520,13 @@ MonoBehaviour:
       Data3: 1856372365
       Data4: 125600778
     Path: event:/Exit
-  rootState: 
-  gridState: 
+  RockCollision:
+    Guid:
+      Data1: 1533574931
+      Data2: 1090653408
+      Data3: -2142741847
+      Data4: -631994494
+    Path: event:/RockCollision
 --- !u!114 &181742640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,15 +1597,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.3742372, g: 0.20392154, b: 0.7764706, a: 1}
+  m_Material: {fileID: 2100000, guid: e6b9505e0973477478c3254ade7bbbc5, type: 2}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
