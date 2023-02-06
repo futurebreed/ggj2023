@@ -39,8 +39,6 @@ public class SoundHandler : MonoBehaviour
 
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
-
         homeSweetHome = FMODUnity.RuntimeManager.CreateInstance(HomeSweetHome);
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(homeSweetHome, Camera.main.transform);
         homeSweetHome.start();

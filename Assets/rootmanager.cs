@@ -48,8 +48,6 @@ public class rootmanager : MonoBehaviour
                 return;
             }
 
-            Debug.Log($"Dragging on Grid position: ({gridX}, {gridY} type {cellTag})");
-
             Vector3 cursorPosition = new Vector3(gridX, gridY, -1);
             if (gridX < rootPosition.x + 2 && gridX > rootPosition.x - 2 && gridY < rootPosition.y + 2 && gridY > rootPosition.y - 2)
             {
