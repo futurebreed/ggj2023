@@ -37,17 +37,18 @@ public class rootmanager : MonoBehaviour
         // Only process root growth if the mouse is actually dragging
         if ((InputDragBehavior.inputState.state != InputMovementState.None) && (InputDragBehavior.inputState.state != InputMovementState.Moving))
         {
-            Tuple<int, int> positionOnGrid = InputDragBehavior.inputState.positionToGridCellSpace(GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gameObject);
+            Tuple<int, int, string> positionOnGrid = InputDragBehavior.inputState.positionToGridCellSpace(GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gameObject);
 
             int gridX = positionOnGrid.Item1; // Cell index
             int gridY = positionOnGrid.Item2; // Cell index
+            string cellTag = positionOnGrid.Item3; // Cell tag
             if (gridX == -1 || gridY == -1)
             {
                 // Click was not on grid
                 return;
             }
 
-            Debug.Log($"Dragging on Grid position: ({gridX}, {gridY})");
+            Debug.Log($"Dragging on Grid position: ({gridX}, {gridY} type {cellTag})");
 
             Vector3 cursorPosition = new Vector3(gridX, gridY, -1);
             if (gridX < rootPosition.x + 2 && gridX > rootPosition.x - 2 && gridY < rootPosition.y + 2 && gridY > rootPosition.y - 2)
@@ -83,6 +84,11 @@ public class rootmanager : MonoBehaviour
                         float center = GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridWidth / 2.0f;
                         rootPosition = new Vector3(center, GameObject.Find("GridGenerator").GetComponent<GridGenerator>().gridHeight, -1);
                         newroots = new HashSet<Vector3>();
+                    }
+
+                    if (cellTag == "Exit")
+                    {
+                        Debug.Log("Victory!");
                     }
                 }
             }

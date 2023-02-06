@@ -138,5 +138,4 @@ public class GridGenerator : MonoBehaviour
     {
         return _seedCell;
     }
-
 }

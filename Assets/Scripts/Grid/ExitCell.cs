@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class ExitCell : GridCell
 {
-    
+    private void Start()
+    {
+        this.gameObject.tag = "Exit";
+    }
 }

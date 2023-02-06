@@ -248,7 +248,7 @@ public class InputState
 
     public bool mouseDown { get; set; } = false;
 
-    public Tuple<int, int> positionToGridCellSpace(GameObject obj)
+    public Tuple<int, int, string> positionToGridCellSpace(GameObject obj)
     {
         var ray = Camera.main.ScreenPointToRay(position);
         // ray to object intersection
@@ -258,9 +258,9 @@ public class InputState
             var hitObject = rayHitInfo.collider.gameObject;
             var gridX = hitObject.GetComponent<GridCell>().GridX;
             var gridY = hitObject.GetComponent<GridCell>().GridY;
-            return new(gridX, gridY);
+            return new(gridX, gridY, hitObject.GetComponent<GridCell>().tag);
         }
 
-        return new(-1, -1); // didn't find any entry
+        return new(-1, -1, string.Empty); // didn't find any entry
     }
 }

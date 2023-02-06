@@ -6,6 +6,8 @@ public class SeedCell : GridCell
 {
     private void Start()
     {
+        this.gameObject.tag = "Seed";
+
         // offset the transform of the seed to help it face the camera
         transform.position += new Vector3(0f, -0.5f, -0.6f);
         transform.Rotate(new Vector3(0f, -90f));
